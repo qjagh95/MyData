@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Basic</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Basic">
+      <UniqueIdentifier>{f591130b-7b43-4b3c-ac78-10ea6cfdd2fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
