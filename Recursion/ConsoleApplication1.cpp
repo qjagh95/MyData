@@ -64,7 +64,7 @@ int main()
 {
 	//cout << Factory(3) << endl;
 	//for (size_t i = 0; i < 15; i++)
-	//	cout << Fibo(i) << endl;
+	//	cout << Fibo(i) << endl;d
 
 	//int Arr[10] = { 1, 3, 5, 7, 9, 16, 32, 64, 128, 256 };
 	//cout << BinerySeach(Arr, 10, 32) << endl;
