@@ -179,7 +179,7 @@ public:
 			if (RootNode == NULL)
 				return;
 
-			Node *TempNode = RootNode;
+			Node* TempNode = RootNode;
 
 			for (size_t i = 0; i < Size; i++) 				   ///트리 전체의 사이즈만큼 돈다
 			{
