@@ -88,7 +88,6 @@ int main()
 
 	//a = b;
 	//*b = 10;
-
 	//*a = 10;
 
 	B* newB1 = new B();

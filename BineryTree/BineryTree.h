@@ -59,7 +59,23 @@ public:
 				}
 				getNode = getNode->m_Right;
 			}
+		}
+	}
 
+	T2& Find(const T1& Key)
+	{
+		Node* getNode = m_Root;
+
+		while (true)
+		{
+			if (getNode->m_Key == Key)
+				return getNode->m_Data;
+
+			else if (getNode->m_Key > Key)
+				getNode = getNode->m_Right;
+			
+			else if (getNode->m_Key < Key)
+				getNode = getNode->Left;
 		}
 	}
 
