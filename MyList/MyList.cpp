@@ -8,7 +8,7 @@ int main()
 {
 	MyList<int> a;
 
-	for (size_t i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++)
 		a.Push_Back(i);
 
 	MyList<int>::Iterator StartIter = a.Begin();

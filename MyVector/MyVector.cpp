@@ -9,16 +9,16 @@ int main()
 	MyVector<int> a;
 
 	cout << "Push_Back" << endl;
-	for (size_t i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++)
 		a.Push_Back(i);
 
-	for (size_t i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++)
 		cout << a[i] << endl;
 
 	cout << "Front_Back" << endl << endl;
 	a.Front_Back(123);
 
-	for (size_t i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++)
 		cout << a[i] << endl;
 	
 	a.Erase(0);
