@@ -2,7 +2,6 @@
 #include <functional>
 using namespace std;
 
-
 template<typename T>
 class MyHeap
 {
@@ -64,29 +63,37 @@ public:
 		m_Size++;
 	}
 
-	T Top()
+	void HeapSort()
 	{
-		T RootData = m_Data[0];
-		T LastData = m_Data[m_Size];
-
-		m_Size--;
-
-		int ParentIndex = 0;
-		int ChildIndex = 0;
+		int FirstIndex = 0;
+		int LastIndex = m_Size;
 
 		while (true)
 		{
-			if (m_Size == 0)
+			if (LastIndex == 0)
 				break;
 
+			int LChildIndex = GetLeftChildIndex(FirstIndex);
+			int RChildIndex = GetRightChildIndex(FirstIndex);
+
+			if (m_Data[LChildIndex] > m_Data[RChildIndex])
+			{
+				T Temp = m_Data[LastIndex];
+				m_Data[LastIndex] = m_Data[RChildIndex];
+				m_Data[RChildIndex] = Temp;
+			}
+			else
+			{
+				T Temp = m_Data[LastIndex];
+				m_Data[LastIndex] = m_Data[LChildIndex];
+				m_Data[LChildIndex] = Temp;
+			}
+
 			m_Size--;
-
+			LastIndex--;
 		}
-	}
 
-	void Sort()
-	{
-		int Index = 0;
+		int a = 0;
 	}
 
 private:
@@ -111,8 +118,8 @@ private:
 	}
 
 	size_t GetParentIndex(size_t Index) { return Index / 2; }
-	size_t GetLeftChildIndex(size_t Index) { return Index * 2; }
-	size_t GetRightChildIndex(size_t Index) { return (Index * 2) + 1; }
+	size_t GetLeftChildIndex(size_t Index) { return Index * 2 + 1; }
+	size_t GetRightChildIndex(size_t Index) { return Index * 2 + 2; }
 
 public:
 	MyHeap()

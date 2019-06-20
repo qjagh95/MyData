@@ -30,6 +30,7 @@ int main()
 	b.Insert(12);
 	b.Insert(136);
 	b.Insert(420);
+	b.HeapSort();
 
 	//for (size_t i = 0; i < 5; i++)
 	//{
