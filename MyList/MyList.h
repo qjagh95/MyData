@@ -45,7 +45,6 @@ public:
 
 	private:
 		Node* m_CurNode;
-		
 		friend MyList;
 	};
 

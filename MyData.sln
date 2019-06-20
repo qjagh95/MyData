@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BineryTree", "BineryTree\Bi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NeopleSuccessTest", "NeopleSuccessTest\NeopleSuccessTest.vcxproj", "{985D6750-46BF-4B75-B4E3-8FFDDA794764}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyHeap", "MyHeap\MyHeap.vcxproj", "{5F7F236C-C35F-4F27-BE77-F14137DCF6E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -111,6 +113,14 @@ Global
 		{985D6750-46BF-4B75-B4E3-8FFDDA794764}.Release|x64.Build.0 = Release|x64
 		{985D6750-46BF-4B75-B4E3-8FFDDA794764}.Release|x86.ActiveCfg = Release|Win32
 		{985D6750-46BF-4B75-B4E3-8FFDDA794764}.Release|x86.Build.0 = Release|Win32
+		{5F7F236C-C35F-4F27-BE77-F14137DCF6E6}.Debug|x64.ActiveCfg = Debug|x64
+		{5F7F236C-C35F-4F27-BE77-F14137DCF6E6}.Debug|x64.Build.0 = Debug|x64
+		{5F7F236C-C35F-4F27-BE77-F14137DCF6E6}.Debug|x86.ActiveCfg = Debug|Win32
+		{5F7F236C-C35F-4F27-BE77-F14137DCF6E6}.Debug|x86.Build.0 = Debug|Win32
+		{5F7F236C-C35F-4F27-BE77-F14137DCF6E6}.Release|x64.ActiveCfg = Release|x64
+		{5F7F236C-C35F-4F27-BE77-F14137DCF6E6}.Release|x64.Build.0 = Release|x64
+		{5F7F236C-C35F-4F27-BE77-F14137DCF6E6}.Release|x86.ActiveCfg = Release|Win32
+		{5F7F236C-C35F-4F27-BE77-F14137DCF6E6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

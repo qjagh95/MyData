@@ -9,7 +9,7 @@ public:
 	virtual ~A() { cout << "~A" << endl; }
 
 	//함수뒤에 const가 붙으면 this에 const가 붙기때문에 멤버변수 조작 불가
-	void _cdecl AAA() const
+	void AAA() const
 	{
 		cout << "AAA()" << endl; 
 		//this->a1 = 123;
@@ -18,7 +18,7 @@ public:
 
 	}
 
-	void _stdcall B()
+	void B()
 	{
 		cout << "B()" << endl;
 		a1 = 0;
@@ -97,5 +97,6 @@ int main()
 
 	delete newB1;
 	delete newB2;
+
 }
 
