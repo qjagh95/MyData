@@ -45,57 +45,23 @@ public:
 			return;
 		}
 
-		//-0.5가 나오기때문에 float
-		float ParentIndex = (m_Size - 1.0f) / 2.0f;
-
-		while (ParentIndex >= 0)
+		int ParentIndex = (m_Size - 1) / 2;
+	
+		while (ParentIndex > 0)
 		{
-			if (m_CompairFunc(Data, m_Data[static_cast<int>(ParentIndex)]))
+			if (m_CompairFunc(Data, m_Data[ParentIndex]))
 			{
 				T Temp = m_Data[m_Size];
-				m_Data[m_Size] = m_Data[static_cast<int>(ParentIndex)];
-				m_Data[static_cast<int>(ParentIndex)] = Temp;
+				m_Data[m_Size] = m_Data[ParentIndex];
+				m_Data[ParentIndex] = Temp;
 			}
 
-			ParentIndex = (ParentIndex - 1.0f) / 2.0f;
+			//부모를 계속 타고들어감
+			ParentIndex = ParentIndex / 2;
 		};
 
 		m_Size++;
 	}
-
-	void HeapSort()
-	{
-		int FirstIndex = 0;
-		int LastIndex = m_Size;
-
-		while (true)
-		{
-			if (LastIndex == 0)
-				break;
-
-			int LChildIndex = GetLeftChildIndex(FirstIndex);
-			int RChildIndex = GetRightChildIndex(FirstIndex);
-
-			if (m_Data[LChildIndex] > m_Data[RChildIndex])
-			{
-				T Temp = m_Data[LastIndex];
-				m_Data[LastIndex] = m_Data[RChildIndex];
-				m_Data[RChildIndex] = Temp;
-			}
-			else
-			{
-				T Temp = m_Data[LastIndex];
-				m_Data[LastIndex] = m_Data[LChildIndex];
-				m_Data[LChildIndex] = Temp;
-			}
-
-			m_Size--;
-			LastIndex--;
-		}
-
-		int a = 0;
-	}
-
 private:
 	void Resize()
 	{
@@ -114,7 +80,7 @@ private:
 
 	static bool DefaultSort(const T& Src, const T& Dest)
 	{
-		return Src > Dest;
+		return Src < Dest;
 	}
 
 	size_t GetParentIndex(size_t Index) { return Index / 2; }

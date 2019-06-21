@@ -9,33 +9,19 @@ using namespace std;
 int main()
 {
 	priority_queue<int> a;
-	a.push(123);
-	a.push(456);
-	a.push(12);
-	a.push(136);
-	a.push(420);
-
-	for (size_t i = 0; i < 5; i++)
-	{
-		cout << a.top() << endl;
-		a.pop();
-	}
-
-	cout << endl;
+	a.push(3);
+	a.push(2);
+	a.push(4);
+	a.push(1);
+	a.push(5);
 
 	MyHeap<int> b;
 
-	b.Insert(123);
-	b.Insert(456);
-	b.Insert(12);
-	b.Insert(136);
-	b.Insert(420);
-	b.HeapSort();
+	b.Insert(3);
+	b.Insert(2);
+	b.Insert(4);
+	b.Insert(1);
+	b.Insert(5);
 
-	//for (size_t i = 0; i < 5; i++)
-	//{
-	//	cout << b.Top() << endl;
-	//	b.Pop();
-	//}
 }
 
