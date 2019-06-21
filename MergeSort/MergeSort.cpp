@@ -18,14 +18,14 @@ void Sort(int* Arr, size_t left, size_t center, size_t right)
 		{
 			TempArr[k] = Arr[i];
 			i++;
-			k++;
 		}
 		else
 		{
 			TempArr[k] = Arr[j];
 			j++;
-			k++;
 		}
+
+		k++;
 	}
 
 	while (i <= center)
@@ -48,7 +48,7 @@ void Sort(int* Arr, size_t left, size_t center, size_t right)
 
 void MergeSort(int* Arr, size_t left, size_t right)
 {
-	if (right - left <= 0)
+	if (right - left < 1)
 		return;
 
 	int Center = (right + left) / 2;
@@ -80,7 +80,7 @@ int main()
 		Arr[Dest] = Temp;
 	}
 
-	MergeSort(Arr, 0, 100);
+	MergeSort(Arr, 0, 99);
 
 	for (size_t i = 0; i < 10; i++)
 	{

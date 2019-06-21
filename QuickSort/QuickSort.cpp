@@ -4,14 +4,38 @@
 #include <time.h>
 using namespace std;
 
-void Sort(int* Arr, size_t left, size_t center, size_t right)
+int Partition(int* Arr, size_t left, size_t right)
 {
+	int Pivot = Arr[right];
+	int i = left - 1;
 
+	for (size_t j = left; j < right; j++)
+	{
+		if (Arr[j] > Pivot)
+		{
+			int Temp = Arr[i];
+			Arr[i] = Arr[j];
+			Arr[j] = Temp;
+			i++;
+		}
+	}
+
+	int Temp = Arr[i + 1];
+	Arr[i + 1] = Arr[right];
+	Arr[right] = Temp;
+
+	return i + 1;
 }
 
 void QuickSort(int* Arr, size_t left, size_t right)
 {
+	if (left > right)
+		return;
 
+	int Part = Partition(Arr, left, right);
+
+	QuickSort(Arr, left, Part - 1);
+	QuickSort(Arr, Part + 1, right);
 }
 
 int main()
@@ -33,7 +57,7 @@ int main()
 		Arr[Dest] = Temp;
 	}
 
-	QuickSort(Arr, 0, 100);
+	QuickSort(Arr, 0, 99);
 
 	for (size_t i = 0; i < 10; i++)
 	{
