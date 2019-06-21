@@ -4,38 +4,42 @@
 #include <time.h>
 using namespace std;
 
-int Partition(int* Arr, size_t left, size_t right)
+void QuickSort(int* Arr, int left, int right)
 {
-	int Pivot = Arr[right];
-	int i = left - 1;
+	if (right - left < 1)
+		return;
 
-	for (size_t j = left; j < right; j++)
+	int Pivot = left;
+	int i = left + 1;
+	int j = right;
+
+	while (i <= j)
 	{
-		if (Arr[j] > Pivot)
+		//왼쪽부터 키값보다 큰 값의 인덱스 탐색
+		while (Arr[i] <= Arr[Pivot])
+			i++;
+
+		//오른쪽부터 키값보다 작은 인덱스 탐색
+		while (Arr[j] > Arr[Pivot])
+			j--;
+
+		//엇갈렸다면
+		if (i > j)
+		{
+			int Temp = Arr[j];
+			Arr[j] = Arr[Pivot];
+			Arr[Pivot] = Temp;
+		}
+		else
 		{
 			int Temp = Arr[i];
 			Arr[i] = Arr[j];
 			Arr[j] = Temp;
-			i++;
 		}
 	}
 
-	int Temp = Arr[i + 1];
-	Arr[i + 1] = Arr[right];
-	Arr[right] = Temp;
-
-	return i + 1;
-}
-
-void QuickSort(int* Arr, size_t left, size_t right)
-{
-	if (left > right)
-		return;
-
-	int Part = Partition(Arr, left, right);
-
-	QuickSort(Arr, left, Part - 1);
-	QuickSort(Arr, Part + 1, right);
+	QuickSort(Arr, left, j - 1);
+	QuickSort(Arr, j + 1, right);
 }
 
 int main()
@@ -59,11 +63,7 @@ int main()
 
 	QuickSort(Arr, 0, 99);
 
-	for (size_t i = 0; i < 10; i++)
-	{
-		for (size_t j = 0; j < 10; j++)
-			cout << Arr[i * 10 + j] << '\t';
+	for (size_t i = 0; i < 100; i++)
+		cout << Arr[i] << endl;
 
-		cout << endl;
-	}
 }
