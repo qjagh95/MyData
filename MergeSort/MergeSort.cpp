@@ -40,7 +40,7 @@ void Sort(int* Arr, size_t left, size_t center, size_t right)
 		TempArr[k] = Arr[j];
 		j++;
 		k++;
-	} 
+	}
 
 	for (size_t i = 0; i < right - left + 1; i++)
 		Arr[i + left] = TempArr[i];
