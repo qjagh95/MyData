@@ -93,7 +93,7 @@ public:
 	//너비우선 탐색
 	void BFS()
 	{
-		//큐를 사용해야함.
+		//큐 or 스택을 사용해야함.
 		cout << "Visited : " << m_VertexList->m_Key << endl;
 		m_VertexList->m_Visited = VM_VISITED;
 
