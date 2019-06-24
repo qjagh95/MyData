@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <iostream>
 #include "Basic.h"
+#include <queue>
 
 using namespace std;
 
@@ -14,6 +15,8 @@ enum VISIT_MODE
 class Graph
 {
 public:
+	Vertex* GetVertexList() const { return m_VertexList; }
+
 	void AddVertex(int Key, const int& Data)
 	{
 		Vertex* newVertex = FindVertex(Key);
@@ -34,6 +37,7 @@ public:
 		newVertex->m_Index = m_Size++;
 		newVertex->m_Data = Data;
 		newVertex->m_Key = Key;
+		newVertex->m_Visited = VM_NOTVISITED;
 		m_VertexMap.insert(make_pair(Key, newVertex));
 
 		Vertex* getVertex = m_VertexList;
@@ -44,10 +48,10 @@ public:
 		getVertex->m_Next = newVertex;
 	}
 
-	void AddEdge(int Weight, int Target, int From)
+	void AddEdge(int Weight, int Src, int Dest)
 	{
-		Vertex* FromVertex = FindVertex(From);
-		Vertex* TargetVertex = FindVertex(Target);
+		Vertex* FromVertex = FindVertex(Dest);
+		Vertex* TargetVertex = FindVertex(Src);
 
 		if (FromVertex == nullptr)
 			return;
@@ -81,18 +85,44 @@ public:
 	}
 
 	//깊이우선 탐색
-	void BFS()
-	{
-
-	}
-	//너비우선 탐색
 	void DFS()
 	{
+		_DFS(m_VertexList);
 	}
 
+	//너비우선 탐색
+	void BFS()
+	{
+		//큐를 사용해야함.
+		cout << "Visited : " << m_VertexList->m_Key << endl;
+		m_VertexList->m_Visited = VM_VISITED;
 
-	
-private:
+		m_BFSQueue.push(m_VertexList);
+
+		Vertex* getVertex = m_VertexList;
+		Edge* getEdge = m_VertexList->m_AdjList;
+
+		while (m_BFSQueue.empty() == false)
+		{
+			getVertex = m_BFSQueue.front();
+			getEdge = getVertex->m_AdjList;
+			m_BFSQueue.pop();
+
+			while (getEdge != nullptr)
+			{
+				Vertex* TargetNext = getEdge->m_Target->m_Next;
+
+				if (TargetNext != nullptr && TargetNext->m_Visited == VM_NOTVISITED)
+				{
+					TargetNext->m_Visited = VM_VISITED;
+					cout << "Visited : " << TargetNext->m_Key << endl;
+					m_BFSQueue.push(TargetNext);
+				}
+				getEdge = getEdge->m_Next;
+			}
+		}
+	}
+
 	Vertex* FindVertex(int Key)
 	{
 		auto FindIter = m_VertexMap.find(Key);
@@ -104,9 +134,30 @@ private:
 	}
 
 private:
+	void _DFS(Vertex* vertex)
+	{
+		cout << "Visited : " << vertex->m_Key << endl;
+		vertex->m_Visited = VM_VISITED;
+
+		Edge* getEdge = nullptr;
+		getEdge = vertex->m_AdjList;
+
+		while (getEdge != nullptr)
+		{
+			Vertex* TargetNext = getEdge->m_Target->m_Next;
+
+			if (TargetNext != nullptr && TargetNext->m_Visited == VM_NOTVISITED)
+				_DFS(TargetNext);
+
+			getEdge = getEdge->m_Next;
+		}
+	}
+
+private:
 	Vertex* m_VertexList;
 	unordered_map<int, Vertex*> m_VertexMap;
 	int m_Size;
+	queue<Vertex*> m_BFSQueue;
 
 public:
 	Graph()

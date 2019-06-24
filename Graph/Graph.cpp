@@ -15,4 +15,7 @@ int main()
 
 	newGraph->AddEdge(0, 6, 1);
 	newGraph->AddEdge(0, 6, 2); 
+
+	//newGraph->DFS();
+	newGraph->BFS();
 }
