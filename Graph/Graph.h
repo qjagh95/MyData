@@ -1,5 +1,8 @@
 #pragma once
-#include <list>
+#include <unordered_map>
+#include <iostream>
+#include "Basic.h"
+
 using namespace std;
 
 enum VISIT_MODE
@@ -8,81 +11,111 @@ enum VISIT_MODE
 	VM_NOTVISITED,
 };
 
-template<typename T>
 class Graph
 {
 public:
-	//간선 구조체
-	struct Edge
+	void AddVertex(int Key, const int& Data)
 	{
-		int m_Weight;
-		Edge* m_Next;
-		struct Vertex* m_From;
-		struct Vertex* m_Target;
+		Vertex* newVertex = FindVertex(Key);
 
-		Edge()
+		if (newVertex != nullptr)
+			return;
+
+		if (m_Size == 0)
 		{
-			m_From = nullptr;
-			m_Target = nullptr;
-			m_Next = nullptr;
-			m_Weight = 0;
+			m_VertexList->m_Index = m_Size++;
+			m_VertexList->m_Data = Data;
+			m_VertexList->m_Key = Key;
+			m_VertexMap.insert(make_pair(Key, m_VertexList));
+			return;
 		}
-	};
 
-	//정점구조체
-	struct Vertex
-	{
-		T m_Data;
-		int m_Visited;
-		int m_Index;
-
-		Vertex* m_Next;
-		list<Edge*> m_vecAdjList;
-
-		Vertex()
-		{
-			m_Next = nullptr;
-			m_Visited = VM_NOTVISITED;
-			m_Index = -1;
-		}
-	};
-
-	void AddVertex()
-	{
-		Vertex* newVertex = new Vertex();
-		m_vecVertex.push_back(newVertex);
-
+		newVertex = new Vertex();
 		newVertex->m_Index = m_Size++;
+		newVertex->m_Data = Data;
+		newVertex->m_Key = Key;
+		m_VertexMap.insert(make_pair(Key, newVertex));
+
+		Vertex* getVertex = m_VertexList;
+
+		while (getVertex->m_Next != nullptr)
+			getVertex = getVertex->m_Next;
+
+		getVertex->m_Next = newVertex;
 	}
-	void AddEdge()
+
+	void AddEdge(int Weight, int Target, int From)
 	{
+		Vertex* FromVertex = FindVertex(From);
+		Vertex* TargetVertex = FindVertex(Target);
+
+		if (FromVertex == nullptr)
+			return;
+
+		if (TargetVertex == nullptr)
+			return;
+
 		Edge* newEdge = new Edge();
+		newEdge->m_From = FromVertex;
+		newEdge->m_Target = TargetVertex;
+		newEdge->m_Weight = Weight;
 
+		Edge* getEdge = TargetVertex->m_AdjList;
 
+		if (getEdge == nullptr)
+		{
+			TargetVertex->m_AdjList = newEdge;
+			return;
+		}
+
+		while (true)
+		{
+			if (getEdge->m_Next == nullptr)
+			{
+				getEdge->m_Next = newEdge;
+				return;
+			}
+
+			getEdge = getEdge->m_Next;
+		}
 	}
-	void PrintGraph()
+
+	//깊이우선 탐색
+	void BFS()
 	{
 
+	}
+	//너비우선 탐색
+	void DFS()
+	{
+	}
+
+
+	
+private:
+	Vertex* FindVertex(int Key)
+	{
+		auto FindIter = m_VertexMap.find(Key);
+
+		if (FindIter == m_VertexMap.end())
+			return nullptr;
+
+		return FindIter->second;
 	}
 
 private:
-	list<Vertex*> m_vecVertex;
+	Vertex* m_VertexList;
+	unordered_map<int, Vertex*> m_VertexMap;
 	int m_Size;
 
 public:
 	Graph()
 	{
 		m_Size = 0;
-		
-		Vertex* newVertex = new Vertex();
-		m_vecVertex.push_back(newVertex);
+		m_VertexList = new Vertex();
 	}
 	~Graph()
 	{
-		auto StartIter = m_vecVertex.begin();
-		auto EndIter = m_vecVertex.end();
-
-		for (; StartIter != EndIter; StartIter++)
-			delete *StartIter;
+		delete[] m_VertexList;
 	}
 };
