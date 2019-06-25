@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Basic.h"
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -48,10 +49,10 @@ public:
 		getVertex->m_Next = newVertex;
 	}
 
-	void AddEdge(int Weight, int Src, int Dest)
+	void AddEdge(int Weight, int SrcKey, int DestKey)
 	{
-		Vertex* FromVertex = FindVertex(Dest);
-		Vertex* TargetVertex = FindVertex(Src);
+		Vertex* FromVertex = FindVertex(DestKey);
+		Vertex* TargetVertex = FindVertex(SrcKey);
 
 		if (FromVertex == nullptr)
 			return;
@@ -101,7 +102,7 @@ public:
 
 		Vertex* getVertex = m_VertexList;
 		Edge* getEdge = m_VertexList->m_AdjList;
-
+		   
 		while (m_BFSQueue.empty() == false)
 		{
 			getVertex = m_BFSQueue.front();
