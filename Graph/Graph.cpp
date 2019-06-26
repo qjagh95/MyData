@@ -28,7 +28,6 @@ int main()
 	newGraph->AddEdge(154, F, G);
 	newGraph->AddEdge(106, G, I);
 
-	newGraph->Dijkstra(B);
-	//newGraph->DFS();
+	newGraph->DFS();
 	//newGraph->BFS();
 }
