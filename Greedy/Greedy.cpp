@@ -12,6 +12,5 @@ int main()
 	cout << "가격을 입력하세요 : ";
 	cin >> Price;
 	cout << endl;
-	
 
 }
