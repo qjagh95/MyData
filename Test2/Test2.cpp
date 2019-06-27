@@ -33,7 +33,7 @@ int main()
 {
 	//A* newA = nullptr;
 	//실행됨(this콜 함수내에서 참조하는 변수가 없기때문에 실행가능)
-	//newA->Print();
+	//newA->Print(); 
 
 	AA* newAA = new CC();
 	//함수 뒤 this가 붙기때문에 AA BB CC CC실행
@@ -41,5 +41,3 @@ int main()
 
 	delete newAA;
 }
-
-
