@@ -9,8 +9,19 @@ int main()
 {
 	int Price = 0;
 
-	cout << "가격을 입력하세요 : ";
+	cout << "거스름돈을 입력하세요 : ";
 	cin >> Price;
 	cout << endl;
 
+	cout << "5000 : " << Price / 5000 << endl;
+	Price %= 5000;
+
+	cout << "1000 : " << Price / 1000 << endl;
+	Price %= 1000;
+
+	cout << "100 : " << Price / 100 << endl;
+	Price %= 100;
+
+	cout << "10 : " << Price / 10 << endl;
+	Price %= 10;
 }

@@ -86,11 +86,11 @@ int main()
 	//cout << GetDivisor(10) << endl;
 
 	//소수구하기
-	cout << GetSoSu(20, {0, 0}) << endl;
+	//cout << GetSoSu(20, {0, 0}) << endl;
 
 	//최대 공약수
 	//cout << GreatestCommon(5, 10) << endl;
 
 	//최소 공배수
-	//cout << CommonMultiple(5, 10) << endl;
+	cout << CommonMultiple(5, 10) << endl;
 }
