@@ -28,11 +28,18 @@ void main()
 	float fa[4];
 	MyMemset(fa, 0, sizeof(float) * 4);
 
+	//memcpy로 연결하기
 	char* Src = "Hello";
 	char* Dest = "World";
 
 	int Size1 = MyStrlen(Src);
 	int Size2 = MyStrlen(Dest);
 
+	char Result[255] = {};
+	char* newChar = new char[Size1 + Size2];
+	memset(newChar, 0, Size1 + Size2);
+	
+	memcpy(newChar, Src, Size1);
+	memcpy(newChar + Size1, Dest, Size2);
 
 }

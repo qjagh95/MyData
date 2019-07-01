@@ -58,7 +58,6 @@ void MyMemcpy(void* pSrc, void* pDest, size_t CopySize)
 
 	for (size_t i = 0; i < CopySize; i++)
 		Src[i] = Dest[i];
-
 }
 
 void MyMemset(void* pSrc, int Value, size_t SettingSize)
