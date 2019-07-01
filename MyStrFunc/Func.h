@@ -68,3 +68,30 @@ void MyMemset(void* pSrc, int Value, size_t SettingSize)
 		Src[i] = Value;
 
 }
+
+const char* MyStrstr(const char* Src, const char* Compair)
+{
+	char* getSrc = const_cast<char*>(Src);
+	char* getDest = const_cast<char*>(Compair);
+
+	int srcSize = MyStrlen(Src);
+	int compairSize = MyStrlen(Compair);
+
+	int Count = 0;
+
+	for (size_t i = 0; i < srcSize; i++)
+	{
+		for (size_t j = 0; j < compairSize; j++)
+		{
+			if (getSrc[i + j] == getDest[j])
+				Count++;
+		}
+
+		if (Count == compairSize)
+			return Compair;
+		else
+			Count = 0;
+	}
+
+	return nullptr;
+}

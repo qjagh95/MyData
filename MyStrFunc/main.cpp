@@ -37,9 +37,13 @@ void main()
 
 	char Result[255] = {};
 	char* newChar = new char[Size1 + Size2];
-	memset(newChar, 0, Size1 + Size2);
+	MyMemset(newChar, 0, Size1 + Size2);
 	
-	memcpy(newChar, Src, Size1);
-	memcpy(newChar + Size1, Dest, Size2);
+	MyMemcpy(newChar, Src, Size1);
+	MyMemcpy(newChar + Size1, Dest, Size2);
 
+	char* Src1 = "Hello";
+	char* Compair = "Hell";
+
+	const char* get = MyStrstr(Src1, Compair);
 }
