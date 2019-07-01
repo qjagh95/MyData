@@ -8,8 +8,11 @@ using namespace std;
 //분할정복은 위에서부터 아래로 쪼개는 방법이지만
 //동적계획법은 제일 작은부분부터 상위로 올라간다.
 
+//추가적으로 하나의 문제를 단 한번만 풀도록 하는 알고리즘
+//한번구한값을 어딘가에 저장해서 사용한다.
+
 //피보나치 동적계획법으로 하기
-int Fibo(int Number)
+size_t Fibo(int Number)
 {
 	if (Number == 0 || Number == 1)
 		return Number;
@@ -28,10 +31,12 @@ int Fibo(int Number)
 
 	delete[] FiboTable;
 
-	return static_cast<int>(Result);
+	return Result;
 }
 
 int main()
 {
-	cout << Fibo(46) << endl;
+	cout << Fibo(9) << endl;
+
+
 }
