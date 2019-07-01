@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include <iostream>
+#include <Windows.h>
 using namespace std;
 
 //매번 가장 좋아보이는 답을 선택하는 알고리즘
