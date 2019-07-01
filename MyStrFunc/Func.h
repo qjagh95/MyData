@@ -77,10 +77,16 @@ const char* MyStrstr(const char* Src, const char* Compair)
 	int srcSize = MyStrlen(Src);
 	int compairSize = MyStrlen(Compair);
 
+	if (srcSize < compairSize)
+		return nullptr;
+
 	int Count = 0;
 
 	for (size_t i = 0; i < srcSize; i++)
 	{
+		if (i + compairSize > srcSize)
+			break;
+
 		for (size_t j = 0; j < compairSize; j++)
 		{
 			if (getSrc[i + j] == getDest[j])
@@ -89,8 +95,8 @@ const char* MyStrstr(const char* Src, const char* Compair)
 
 		if (Count == compairSize)
 			return Compair;
-		else
-			Count = 0;
+
+		Count = 0;
 	}
 
 	return nullptr;
