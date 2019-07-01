@@ -27,4 +27,12 @@ void main()
 
 	float fa[4];
 	MyMemset(fa, 0, sizeof(float) * 4);
+
+	char* Src = "Hello";
+	char* Dest = "World";
+
+	int Size1 = MyStrlen(Src);
+	int Size2 = MyStrlen(Dest);
+
+
 }
