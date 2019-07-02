@@ -43,7 +43,7 @@ void main()
 	MyMemcpy(newChar + Size1, Dest, Size2);
 
 	char* Src1 = "Hello";
-	char* Compair = "Hell";
+	char* Compair = "l";
 
 	const char* get = MyStrstr(Src1, Compair);
 }

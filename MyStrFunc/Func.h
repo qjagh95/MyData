@@ -66,7 +66,6 @@ void MyMemset(void* pSrc, int Value, size_t SettingSize)
 
 	for (size_t i = 0; i < SettingSize; i++)
 		Src[i] = Value;
-
 }
 
 const char* MyStrstr(const char* Src, const char* Compair)
