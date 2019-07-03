@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <list>
 using namespace std;
 
 void OutPut16(int Number)
@@ -35,7 +36,8 @@ void OutPut16(int Number)
 void ConvertJinSu(int Number)
 {
 	stack<int> myStack;
-	vector<int> minusVec;
+	list<int> minusVec;
+
 	int getNumber = Number;
 	bool isMinus = false;
 
@@ -43,15 +45,12 @@ void ConvertJinSu(int Number)
 	{
 		Number *= -1;
 		isMinus = true;
-		minusVec.push_back(1);
 	}
 
 	int TwoJinSu = Number;
 	int TenJinSu = Number;
 	int HexJinSu = Number;
 	int OctalJinSu = Number;
-
-	int Index = 0;
 
 	//2진수
 	cout << "2 진수로 " << getNumber << "변환" << endl;
@@ -86,21 +85,28 @@ void ConvertJinSu(int Number)
 	}
 	else
 	{
-		sSize = minusVec.size();
+		auto StartIter = minusVec.rbegin();
+		auto EndIter = minusVec.rend();
 
-		for (size_t i = sSize - 1; i > 0; i--)
+		for (; StartIter != EndIter; StartIter++)
 		{
-			if (minusVec[i] == 1)
-				minusVec[i] = 0;
+			if (*StartIter == 1)
+				*StartIter = 0;
 			else
 			{
-				minusVec[i] = 1;
+				*StartIter = 1;
 				break;
 			}
 		}
 
-		for (size_t i = 0; i < sSize; i++)
-			cout << minusVec[i] << " ";
+		while (minusVec.size() % 4 != 0)
+			minusVec.push_front(1);
+
+		auto StartIter1 = minusVec.begin();
+		auto EndIter1 = minusVec.end();
+
+		for ( ;StartIter1 != EndIter1; StartIter1++)
+			cout << *StartIter1 << " ";
 	}
 
 	cout << endl << endl;
@@ -130,14 +136,18 @@ void ConvertJinSu(int Number)
 			myStack.pop();
 
 		sSize = minusVec.size();
+
 		int Num = 1;
 		int Value = 0;
 		vector<int> HexVec;
 
-		for (size_t i = sSize - 1; i > 0; i--)
+		auto StartIter = minusVec.rbegin();
+		auto EndIter = minusVec.rend();
+
+		for (; StartIter != EndIter ; StartIter++ )
 		{
-			if (minusVec[i] == 1)
-				Value += minusVec[i] * Num;
+			if (*StartIter == 1)
+				Value += *StartIter * Num;
 
 			Num *= 2;
 		}
@@ -154,6 +164,7 @@ void ConvertJinSu(int Number)
 
 	cout << endl << endl;
 	cout << "8 진수로 " << getNumber << "변환" << endl;
+
 	while (OctalJinSu > 0)
 	{
 		myStack.push(OctalJinSu % 8);
@@ -178,14 +189,23 @@ void ConvertJinSu(int Number)
 			myStack.pop();
 
 		sSize = minusVec.size();
+
+		if (sSize % 3 != 0)
+		{
+			minusVec.push_front(1);
+		}
+
 		int Num = 1; 
 		int Value = 0;
 		vector<int> OcaVec;
 
-		for (size_t i = sSize; i > 0; i--)
+		auto StartIter = minusVec.rbegin();
+		auto EndIter = minusVec.rend();
+
+		for (;StartIter != EndIter; StartIter++)
 		{
-			if (minusVec[i - 1] == 1)
-				Value += minusVec[i - 1] * Num;
+			if (*StartIter == 1)
+				Value += *StartIter * Num;
 
 			Num *= 2;
 		}
