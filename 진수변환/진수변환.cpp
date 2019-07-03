@@ -191,9 +191,7 @@ void ConvertJinSu(int Number)
 		sSize = minusVec.size();
 
 		if (sSize % 3 != 0)
-		{
 			minusVec.push_front(1);
-		}
 
 		int Num = 1; 
 		int Value = 0;

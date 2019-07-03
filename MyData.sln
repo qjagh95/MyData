@@ -69,6 +69,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SmartPointer", "SmartPointe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "진수변환", "진수변환\진수변환.vcxproj", "{B97D26CB-0457-441B-B9BE-A4F997B3B5BA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReversNumber", "ReversNumber\ReversNumber.vcxproj", "{76542D37-A0D8-4C62-8FAF-DF797310AF95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -301,6 +303,14 @@ Global
 		{B97D26CB-0457-441B-B9BE-A4F997B3B5BA}.Release|x64.Build.0 = Release|x64
 		{B97D26CB-0457-441B-B9BE-A4F997B3B5BA}.Release|x86.ActiveCfg = Release|Win32
 		{B97D26CB-0457-441B-B9BE-A4F997B3B5BA}.Release|x86.Build.0 = Release|Win32
+		{76542D37-A0D8-4C62-8FAF-DF797310AF95}.Debug|x64.ActiveCfg = Debug|x64
+		{76542D37-A0D8-4C62-8FAF-DF797310AF95}.Debug|x64.Build.0 = Debug|x64
+		{76542D37-A0D8-4C62-8FAF-DF797310AF95}.Debug|x86.ActiveCfg = Debug|Win32
+		{76542D37-A0D8-4C62-8FAF-DF797310AF95}.Debug|x86.Build.0 = Debug|Win32
+		{76542D37-A0D8-4C62-8FAF-DF797310AF95}.Release|x64.ActiveCfg = Release|x64
+		{76542D37-A0D8-4C62-8FAF-DF797310AF95}.Release|x64.Build.0 = Release|x64
+		{76542D37-A0D8-4C62-8FAF-DF797310AF95}.Release|x86.ActiveCfg = Release|Win32
+		{76542D37-A0D8-4C62-8FAF-DF797310AF95}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -334,6 +344,7 @@ Global
 		{63CFD1AC-2F7F-4677-AE50-AF4ED10CB901} = {C6142D17-03C7-4F88-A368-C6EC636C6B0A}
 		{70920346-9A9B-494E-9069-7C9144CC25D2} = {82509972-974A-481B-BF80-FDB29D86EE5A}
 		{B97D26CB-0457-441B-B9BE-A4F997B3B5BA} = {E03313C7-ECB3-4310-B4F3-C0872E2637A7}
+		{76542D37-A0D8-4C62-8FAF-DF797310AF95} = {E03313C7-ECB3-4310-B4F3-C0872E2637A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93B53A0A-FA9F-47A0-ADDB-A71245C8EECB}
