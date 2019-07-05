@@ -18,6 +18,7 @@ void BubbleSort(int* Arr, size_t size)
 			}
 		}
 	}
+
 }
 
 int main()

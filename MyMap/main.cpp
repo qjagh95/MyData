@@ -88,24 +88,27 @@ void main()
 
 	MyMap<int, int> myMap;
 
-	myMap.Insert(50, 100);
-	myMap.Insert(15, 100);
-	myMap.Insert(10, 100);
-	myMap.Insert(25, 100);
-	myMap.Insert(20, 100);
-	myMap.Insert(30, 100);
-	myMap.Insert(60, 100);
-	myMap.Insert(80, 100);
-	myMap.Insert(75, 100);
+	myMap.Insert(10, 1);
+	myMap.Insert(6, 1);
+	myMap.Insert(11, 1);
+	myMap.Insert(4, 1);
+	myMap.Insert(7, 1);
+	myMap.Insert(3, 1);
+	myMap.Insert(5, 1);
+	myMap.Insert(8, 1);
+	myMap.Insert(13, 1);
+	myMap.Insert(17, 1);
 
-	cout << "MyMap" << endl;
-	MyMap<int, int>::Iter StIter = myMap.Begin();
-	MyMap<int, int>::Iter enIter = myMap.End();
+	myMap.MidOrder();
 
-	for (; StIter != enIter; StIter++)
-	{
-		cout << StIter.GetKey() << endl;
-	}
-	cout << endl;
+	//cout << "MyMap" << endl;
+	//MyMap<int, int>::Iter StIter = myMap.Begin();
+	//MyMap<int, int>::Iter enIter = myMap.End();
+
+	//for (; StIter != enIter; StIter++)
+	//{
+	//	cout << StIter.GetKey() << endl;
+	//}
+	//cout << endl;
 }
 

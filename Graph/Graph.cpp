@@ -28,6 +28,15 @@ int main()
 	newGraph->AddEdge(154, F, G);
 	newGraph->AddEdge(106, G, I);
 
-	newGraph->DFS();
+	list<Vertex*>* a = newGraph->Dijkstra(1, 3);
+
+	auto StartIter = a->begin();
+	auto EndIter = a->end();
+
+	for (; StartIter != EndIter; StartIter++)
+		cout << (*StartIter)->m_Key << " ";
+
+
+	//newGraph->DFS();
 	//newGraph->BFS();
 }

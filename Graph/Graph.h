@@ -3,7 +3,9 @@
 #include <iostream>
 #include "Basic.h"
 #include <queue>
+#include <algorithm>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -13,11 +15,18 @@ enum VISIT_MODE
 	VM_NOTVISITED,
 };
 
+struct DijkstraInfo
+{
+	Vertex* Target;
+	bool Visited;
+	int Weight;
+	DijkstraInfo* Prev;
+};
+
 class Graph
 {
 public:
 	Vertex* GetVertexList() const { return m_VertexList; }
-
 	void AddVertex(int Key, const int& Data)
 	{
 		Vertex* newVertex = FindVertex(Key);
@@ -31,6 +40,7 @@ public:
 			m_VertexList->m_Data = Data;
 			m_VertexList->m_Key = Key;
 			m_VertexMap.insert(make_pair(Key, m_VertexList));
+			m_DeleteVec.push_back(m_VertexList);
 			return;
 		}
 
@@ -40,6 +50,7 @@ public:
 		newVertex->m_Key = Key;
 		newVertex->m_Visited = VM_NOTVISITED;
 		m_VertexMap.insert(make_pair(Key, newVertex));
+		m_DeleteVec.push_back(newVertex);
 
 		Vertex* getVertex = m_VertexList;
 
@@ -94,20 +105,21 @@ public:
 	//너비우선 탐색
 	void BFS()
 	{
+		queue<Vertex*> BFSQueue;
 		//큐 or 스택을 사용해야함.
 		cout << "Visited : " << m_VertexList->m_Key << endl;
 		m_VertexList->m_Visited = VM_VISITED;
 
-		m_BFSQueue.push(m_VertexList);
+		BFSQueue.push(m_VertexList);
 
 		Vertex* getVertex = m_VertexList;
 		Edge* getEdge = m_VertexList->m_AdjList;
 		   
-		while (m_BFSQueue.empty() == false)
+		while (BFSQueue.empty() == false)
 		{
-			getVertex = m_BFSQueue.front();
+			getVertex = BFSQueue.front();
 			getEdge = getVertex->m_AdjList;
-			m_BFSQueue.pop();
+			BFSQueue.pop();
 
 			while (getEdge != nullptr)
 			{
@@ -117,7 +129,7 @@ public:
 				{
 					TargetNext->m_Visited = VM_VISITED;
 					cout << "Visited : " << TargetNext->m_Key << endl;
-					m_BFSQueue.push(TargetNext);
+					BFSQueue.push(TargetNext);
 				}
 				getEdge = getEdge->m_Next;
 			}
@@ -132,6 +144,62 @@ public:
 			return nullptr;
 
 		return FindIter->second;
+	}
+
+	list<Vertex*>* Dijkstra(int StartKey, int TargetKey)
+	{
+		Vertex* Start = FindVertex(StartKey);
+		Vertex* Target = FindVertex(TargetKey);
+
+		if (Start == nullptr || Target == nullptr)
+			return nullptr;
+
+		queue<Vertex*> BFSQueue;
+		DijkstraInfo* newNode = new DijkstraInfo[m_Size];
+
+		priority_queue<pair<int, DijkstraInfo>> WeightQueue;
+		int StartIndex = 0;
+		int EndIndex = 0;
+
+		for (size_t i = 0; i < m_Size; i++)
+		{
+			newNode[i].Prev = nullptr;
+			newNode[i].Visited = false;
+			newNode[i].Weight = INT_MIN;
+			newNode[i].Target = m_DeleteVec[i];
+
+			if (m_DeleteVec[i]->m_Key == StartKey)
+				StartIndex = i;
+
+			if (m_DeleteVec[i]->m_Key == TargetKey)
+				EndIndex = i;
+		}
+
+		pair<int, DijkstraInfo> TempPair = pair<int, DijkstraInfo>(newNode[StartIndex].Weight, newNode[StartIndex]);
+		WeightQueue.push(TempPair);
+
+		while (WeightQueue.empty() == false)
+		{
+			DijkstraInfo getInfo = {};
+			int	Weight = 0;
+
+			Weight = WeightQueue.top().first;
+			getInfo = WeightQueue.top().second;
+
+			while (true)
+			{
+				Edge* getEdge = getInfo.Target->m_AdjList;
+
+				if (getInfo.Target->m_Visited == VM_VISITED)
+					continue;
+
+				int EdgeWeight = 0;
+
+			}
+
+		}
+
+		return &m_PathList;
 	}
 
 private:
@@ -157,8 +225,9 @@ private:
 private:
 	Vertex* m_VertexList;
 	unordered_map<int, Vertex*> m_VertexMap;
+	vector<Vertex*> m_DeleteVec;
 	int m_Size;
-	queue<Vertex*> m_BFSQueue;
+	list<Vertex*> m_PathList;
 
 public:
 	Graph()
