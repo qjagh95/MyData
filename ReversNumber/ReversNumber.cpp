@@ -6,6 +6,7 @@ using namespace std;
 
 void ConvertNumber(int N)
 {
+	//제약조건
 	if (N <= 2 || N >= pow(10, 5))
 		return;
 
@@ -15,91 +16,52 @@ void ConvertNumber(int N)
 	int Num = 1;
 	int Index = 0;
 	int Table[100000] = {};
+
+	//배열을 -1로 채운다.
 	memset(Table, -1, sizeof(int) * 100000);
+	
+	//첫번째 자리를 구한다.
+	int Temp = Num % N * 10;
 
-	for (size_t i = 0; i < N; i++)
+	cout << "0.";
+
+	//순환점을 구한다.
+	while (true)
 	{
-		int Temp = Num % N * 10;
-		Start = 0;
-		End = 0;
+		//반복해서 자릿수자체를 인덱스로 쓴다.
+		Num = Num % N * 10;
 
-		while (true)
+		if (Table[Num] != -1)
 		{
-			Num = Num % N * 10;
-
-			if (Table[Num] != -1)
-			{
-				Start = Table[Num];
-				End = Index;
-				break;
-			}
-
-			Table[Num] = Index++;
+			Start = Table[Num];
+			End = Index;
+			break;
 		}
 
-		for (size_t i = 0; i < Start; i++)
-		{
-			cout << Temp / N;
-			Temp = Temp % N * 10;
-		}
-
-		for (size_t i = Start; i < End; i++)
-		{
-			cout << Temp / N;
-			Temp = Temp % N * 10;
-		}
+		Table[Num] = Index++;
 	}
 
-}
+	for (size_t i = 0; i < Start; i++)
+	{
+		cout << Temp / N;
+		Temp = Temp % N * 10;
+	}
 
-int a, b, k, t, start, finish;
-int c[100001];
+	//반복되는 숫자.
+	for (size_t i = Start; i < End; i++)
+	{
+		cout << Temp / N;
+		RepeatNumber.push_back(Temp / N);
+
+		Temp = Temp % N * 10;
+	}
+
+	cout << " ";
+	for (size_t i = 0; i < RepeatNumber.size(); i++)
+		cout << RepeatNumber[i];
+}
 
 int main()
 {
-	//ConvertNumber(56);
-	//t = N
-	//k = Index
-
-
-	cin >> t;
-
-	k = 0;
-	memset(c, -1, sizeof(c));
-	cin >> a >> b;
-	start = finish = 0;
-
-	printf("%d.", (a / t));
-	int temp = a % t * 10;
-
-	while (true) 
-	{ //순환되는 부분까지 찾기
-		a = a % t * 10;
-
-		if (c[a] != -1)
-		{
-			start = c[a];
-			finish = k;
-			break;
-		}
-		c[a] = k++;
-	}
-
-	for (int i = 0; i < start; i++)
-	{
-		printf("%d", temp / t);
-		temp = temp % t * 10;
-	}
-
-	printf("(");
-
-	for (int i = start; i < finish; i++)
-	{
-		printf("%d", temp / t);
-		temp = temp % t * 10;
-	}
-
-	printf(")\n");
-
-	return 0;
+	ConvertNumber(3);
 }
