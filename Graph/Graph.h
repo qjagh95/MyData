@@ -4,8 +4,8 @@
 #include "Basic.h"
 #include <queue>
 #include <algorithm>
+#include <functional>
 #include <stack>
-#include <queue>
 
 using namespace std;
 
@@ -13,14 +13,6 @@ enum VISIT_MODE
 {
 	VM_VISITED,
 	VM_NOTVISITED,
-};
-
-struct DijkstraInfo
-{
-	Vertex* Target;
-	bool Visited;
-	int Weight;
-	DijkstraInfo* Prev;
 };
 
 class Graph
@@ -148,6 +140,8 @@ public:
 
 	list<Vertex*>* Dijkstra(int StartKey, int TargetKey)
 	{
+		m_PathList.clear();
+
 		Vertex* Start = FindVertex(StartKey);
 		Vertex* Target = FindVertex(TargetKey);
 
@@ -155,47 +149,52 @@ public:
 			return nullptr;
 
 		queue<Vertex*> BFSQueue;
-		DijkstraInfo* newNode = new DijkstraInfo[m_Size];
+		priority_queue<Vertex*, vector<Vertex*>, function<bool(Vertex*, Vertex*)>> WeightQueue
+		{ 
+			[](Vertex* Left, Vertex* Right) 
+			{
+			return Left->m_Weight > Right->m_Weight;
+			} 
+		};
 
-		priority_queue<pair<int, DijkstraInfo>> WeightQueue;
-		int StartIndex = 0;
-		int EndIndex = 0;
+		BFSQueue.push(Start);
 
-		for (size_t i = 0; i < m_Size; i++)
-		{
-			newNode[i].Prev = nullptr;
-			newNode[i].Visited = false;
-			newNode[i].Weight = INT_MIN;
-			newNode[i].Target = m_DeleteVec[i];
+		Vertex* getVertex = Start;
+		Vertex* SelectVertex = Start;
+		Start->m_Weight = 0;
+		WeightQueue.push(SelectVertex);
 
-			if (m_DeleteVec[i]->m_Key == StartKey)
-				StartIndex = i;
-
-			if (m_DeleteVec[i]->m_Key == TargetKey)
-				EndIndex = i;
-		}
-
-		pair<int, DijkstraInfo> TempPair = pair<int, DijkstraInfo>(newNode[StartIndex].Weight, newNode[StartIndex]);
-		WeightQueue.push(TempPair);
+		Edge* getEdge = Start->m_AdjList;
+		stack<Vertex*> VertexStack;
 
 		while (WeightQueue.empty() == false)
 		{
-			DijkstraInfo getInfo = {};
-			int	Weight = 0;
+			getVertex = WeightQueue.top();
+			getEdge = getVertex->m_AdjList;
+			WeightQueue.pop();
 
-			Weight = WeightQueue.top().first;
-			getInfo = WeightQueue.top().second;
-
-			while (true)
+			while (getEdge != nullptr)
 			{
-				Edge* getEdge = getInfo.Target->m_AdjList;
+				Vertex* EdgeFrom = getEdge->m_From;
 
-				if (getInfo.Target->m_Visited == VM_VISITED)
-					continue;
+				if (EdgeFrom != nullptr)
+				{
+					if (EdgeFrom->m_Weight <= INT_MAX && (getVertex->m_Weight + getEdge->m_Weight) < EdgeFrom->m_Weight)
+					{
+						EdgeFrom->m_Weight = getVertex->m_Weight + getEdge->m_Weight;
+						EdgeFrom->m_Prev = getVertex;
+					}
 
-				int EdgeWeight = 0;
-
+					WeightQueue.push(EdgeFrom);
+				}
+				getEdge = getEdge->m_Next;
 			}
+		}
+
+		size_t StackSize = VertexStack.size();
+
+		for (size_t i = 0; i < StackSize; i++)
+		{
 
 		}
 

@@ -23,15 +23,20 @@ struct Vertex
 	int m_Data;
 	int m_Visited;
 	int m_Index;
-
+	int m_Weight;
+	
+	Vertex* m_Prev;
 	Vertex* m_Next;
 	Edge* m_AdjList;
 
 	Vertex()
 	{
+		m_Prev = nullptr;
 		m_Next = nullptr;
 		m_AdjList = nullptr;
 		m_Visited = 1;
 		m_Index = -1;
+
+		m_Weight = INT_MAX;
 	}
 };
