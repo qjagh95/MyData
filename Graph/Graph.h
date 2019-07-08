@@ -148,7 +148,8 @@ public:
 		if (Start == nullptr || Target == nullptr)
 			return nullptr;
 
-		queue<Vertex*> BFSQueue;
+		Start->m_Weight = 0;
+
 		priority_queue<Vertex*, vector<Vertex*>, function<bool(Vertex*, Vertex*)>> WeightQueue
 		{ 
 			[](Vertex* Left, Vertex* Right) 
@@ -157,15 +158,11 @@ public:
 			} 
 		};
 
-		BFSQueue.push(Start);
-
 		Vertex* getVertex = Start;
 		Vertex* SelectVertex = Start;
-		Start->m_Weight = 0;
-		WeightQueue.push(SelectVertex);
+		WeightQueue.push(Start);
 
 		Edge* getEdge = Start->m_AdjList;
-		stack<Vertex*> VertexStack;
 
 		while (WeightQueue.empty() == false)
 		{
@@ -191,11 +188,23 @@ public:
 			}
 		}
 
+		SelectVertex = Target;
+
+		stack<Vertex*> VertexStack;
+		VertexStack.push(Target);
+
+		while (SelectVertex->m_Prev != nullptr)
+		{
+			VertexStack.push(SelectVertex->m_Prev);
+			SelectVertex = SelectVertex->m_Prev;
+		}
+
 		size_t StackSize = VertexStack.size();
 
 		for (size_t i = 0; i < StackSize; i++)
 		{
-
+			m_PathList.push_back(VertexStack.top());
+			VertexStack.pop();
 		}
 
 		return &m_PathList;
