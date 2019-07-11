@@ -1,6 +1,5 @@
 ﻿#include "pch.h"
 #include <iostream>
-#include <stack>
 #include <vector>
 
 using namespace std;
@@ -15,40 +14,35 @@ int Out(int Number)
 
 void Out2(int Number)
 {
-	stack<int> newVec;
+	size_t j = 0;
+	vector<int> newVec;
+	newVec.push_back(1);
 
-	unsigned long long Num1 = 0;
-	unsigned long long Num2 = 0;
-	unsigned long long Sum = 0;
-
-	int Index = 0;
-
-	//for (size_t i = Number; i > 0; i--)
-	//	Result *= i;
-
-	while (Index < Number)
+	for (size_t i = 2; i <= Number; i++)
 	{
-		Num1 = Index * (Index - 1);
-		Num2 = 
+		unsigned long long Temp = 0;
 
-		Sum = Num1 + Num2;
-
-		while (Sum != 0)
+		for (j = 0; j < newVec.size(); j++)
 		{
-			newVec.push(Sum % 10);
-			Sum /= 10;
+			 Temp += newVec[j] * i;
+
+			 newVec[j] = Temp % 10;
+			 Temp /= 10;
 		}
-		Index++;
+
+		while (Temp != 0)
+		{
+			newVec.push_back(Temp % 10);
+			Temp /= 10;
+		}
+
 	}
 
-	size_t Size = newVec.size();
-	for (size_t i = 0; i < Size; i++)
-	{
-		cout << newVec.top();
-		newVec.pop();
-	}
+	for (int i = newVec.size() - 1; i >= 0; i--)
+		cout << newVec[i];
 }
 
+//GM
 void Out3(int64_t Number)
 {
 	std::vector<int64_t> v{};
@@ -56,7 +50,7 @@ void Out3(int64_t Number)
 
 	for (int64_t i = 2; i <= Number; ++i)
 	{
-		for (int64_t j = 0; j < v.size(); ++j)
+		for (int64_t j = 0; j < v.size() - 1; ++j)
 		{
 			int64_t tmp = v[j] * i;
 
@@ -79,5 +73,5 @@ void Out3(int64_t Number)
 
 int main()
 {
-	Out3(10);
+	Out2(100000);
 }
