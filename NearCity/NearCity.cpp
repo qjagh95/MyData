@@ -91,7 +91,7 @@ int GetDistance(DataInfo* Left, DataInfo* Right)
 	return sqrt(static_cast<int>(Distance));
 }
 
-vector<string> Func(vector<string>& Citys, vector<int>& xPos, vector<int>& yPos)
+vector<string> Func(vector<string>& Citys, vector<int>& xPos, vector<int>& yPos, vector<string>& CQ)
 {
 	SettingData(Citys, xPos, yPos);
 
@@ -154,23 +154,39 @@ vector<string> Func(vector<string>& Citys, vector<int>& xPos, vector<int>& yPos)
 		}
 	}
 
-	for (size_t i = 0; i < Size; i++)
+	for (size_t i = 0; i < CQ.size(); i++)
 	{
-		cout << VecInfo[i]->CityName << "와 가까운 도시는 : ";
+		cout << CQ[i] << "와 가까운 도시는 : ";
 
-		if (VecInfo[i]->NearCitys.empty() == true)
+		string Select;
+		bool isPair = false;
+		int Index = 0;
+
+		for (size_t j = 0; j < VecInfo.size(); j++)
 		{
-			cout << "NONE" << " ";
+			if (CQ[i] == VecInfo[j]->CityName)
+			{
+				Select = CQ[i];
+				isPair = true;
+				Index = j;
+				break;
+			}
+		}
+
+		if (isPair == true)
+		{
+			for (size_t j = 0; j < VecInfo[Index]->NearCitys.size(); j++)
+			{
+				VecOut.push_back(VecInfo[Index]->NearCitys[j]);
+				cout << VecInfo[Index]->NearCitys[j];
+			}
+		}
+		else
+		{
 			VecOut.push_back("NONE");
-			continue;
+			cout << "NONE";
 		}
-		
-		for (size_t j = 0; j < VecInfo[i]->NearCitys.size(); j++)
-		{
-			cout << VecInfo[i]->NearCitys[j] << " ";
-			VecOut.push_back(VecInfo[i]->NearCitys[j]);
-		}
-
+			
 		cout << endl;
 	}
 
@@ -185,6 +201,7 @@ int main()
 	vector<string> Citys;
 	vector<int> xPos;
 	vector<int> yPos;
+	vector<string> CQ;
 
 	cout << "도시의 갯수 입력 : ";
 	cin >> CityCount;
@@ -229,5 +246,19 @@ int main()
 		Index++;
 	}
 
-	Func(Citys, xPos, yPos);
+	cout << "찾을 도시 갯수 입력 : ";
+	cin >> CityCount;
+
+	Index = 0;
+	while (Index < CityCount)
+	{
+		string newStr;
+		cin >> newStr;
+
+		CQ.push_back(newStr);
+
+		Index++;
+	}
+
+	Func(Citys, xPos, yPos, CQ);
 }

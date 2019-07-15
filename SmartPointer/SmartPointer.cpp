@@ -7,7 +7,7 @@ int main()
 {
 	//unique - 하나만 존재하는 포인터 
 	//포인터이동시 move함수로 이동시켜야함.
-	unique_ptr<int> a;
+	unique_ptr<int> a = make_unique<int>(a);
 
 
 

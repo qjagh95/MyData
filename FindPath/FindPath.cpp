@@ -15,6 +15,12 @@ enum TILE_OPTION
 	TO_ITEM,
 };
 
+enum VISITED_MODE
+{
+	VM_VISITED,
+	VM_NONEVISITED,
+};
+
 struct Edge;
 struct Tile2D
 {
@@ -25,6 +31,7 @@ struct Tile2D
 	Tile2D* Next;
 
 	TILE_OPTION Option;
+	VISITED_MODE Visited;
 	vector<Edge*> VecEdge;
 
 	Tile2D()
@@ -33,10 +40,13 @@ struct Tile2D
 		y = 0;
 		Weight = 0;
 		Option = TO_NONE;
+		Visited = VM_NONEVISITED;
 		VecEdge.reserve(4);
 
 		Prev = nullptr;
 	}
+
+
 };
 
 struct Edge
@@ -54,17 +64,77 @@ struct Edge
 		Weight = 0;
 	}
 };
-
-vector<Tile2D*> VecItem;
-
-int Func(vector<vector<int>> Mase)
+class Graph
 {
-	int Distance = 0;
+public:
+	void SettingData(const vector<vector<int>>& Mase)
+	{
+		for (size_t i = 0; i < Mase.size(); i++)
+		{
+			vector<Tile2D*> TempVec;
+			m_vecTile.push_back(TempVec);
 
-	return Distance;
+			for (size_t j = 0; j < Mase[i].size(); j++)
+			{
+				Tile2D* newTile = new Tile2D();
+				newTile->x = i;
+				newTile->y = j;
+
+				while (m_TileList->Next != nullptr)
+					m_TileList->Next = newTile;
+				
+				m_vecTile[i].push_back(newTile);
+			}
+		}
+	}
+
+	void AddTile()
+	{
+		
+	}
+	void AddEdge()
+	{
+
+	}
+	int FindPath()
+	{
+		return 0;
+	}
+
+	Graph()
+	{
+
+	}
+	~Graph()
+	{
+		for (size_t i = 0; i < m_vecTile.size(); i++)
+		{
+			for (size_t j = 0; j < m_vecTile[i].size(); j++)
+			{
+				delete m_vecTile[i][j];
+			}
+		}
+	}
+
+
+private:
+	Tile2D* m_TileList;
+	vector<vector<Tile2D*>> m_vecTile;
+};
+
+
+int Func(const vector<vector<int>>& Mase, int EndX, int EndY)
+{
+	Graph* newGraph = new Graph();
+	newGraph->SettingData(Mase);
+	int Distance = newGraph->FindPath();
+
+	delete newGraph;
+	return Distance;  
 }
 
 int main()
 {
+
 }
 
