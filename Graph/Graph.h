@@ -154,7 +154,7 @@ public:
 		{ 
 			[](Vertex* Left, Vertex* Right) 
 			{
-			return Left->m_Weight > Right->m_Weight;
+				return Left->m_Weight > Right->m_Weight;
 			} 
 		};
 
@@ -176,9 +176,10 @@ public:
 
 				if (EdgeFrom != nullptr)
 				{
-					if (EdgeFrom->m_Weight <= INT_MAX && (getVertex->m_Weight + getEdge->m_Weight) < EdgeFrom->m_Weight)
+					if (EdgeFrom->m_Weight <= INT_MAX && (getVertex->m_Weight + getEdge->m_Weight) < EdgeFrom->m_Weight && EdgeFrom->m_Visited == VM_NOTVISITED)
 					{
 						EdgeFrom->m_Weight = getVertex->m_Weight + getEdge->m_Weight;
+						EdgeFrom->m_Visited = VM_VISITED;
 						EdgeFrom->m_Prev = getVertex;
 					}
 
