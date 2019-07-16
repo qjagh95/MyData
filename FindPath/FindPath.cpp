@@ -313,7 +313,7 @@ int Func(const vector<vector<int>>& Mase, int EndX, int EndY)
 		if (Temp == -1)
 		{
 			delete newGraph;
-			return  -1;
+			return -1;
 		}
 
 		Distance += Temp;
