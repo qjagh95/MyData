@@ -119,25 +119,25 @@ public:
 				if (x - 1 >= 0)
 				{
 					if(m_vecTile[y][x - 1]->Option != TO_NOMOVE)
-						AddEdge(x, y, y, x - 1);
+						AddEdge(x, y, x - 1, y);
 				}
 
 				if (x + 1 < m_vecTile[y].size())
 				{
 					if(m_vecTile[y][x + 1]->Option != TO_NOMOVE)
-						AddEdge(x, y, y, x + 1);
+						AddEdge(x, y, x + 1, y);
 				}
 
 				if (y - 1 >= 0)
 				{
 					if (m_vecTile[y - 1][x]->Option != TO_NOMOVE)
-						AddEdge(x, y, y - 1, x);
+						AddEdge(x, y, x, y - 1);
 				}
 
 				if (y + 1 < m_vecTile.size())
 				{
 					if(m_vecTile[y + 1][x]->Option != TO_NOMOVE)
-						AddEdge(x, y, y + 1, x);
+						AddEdge(x, y, x, y + 1);
 				}
 			}
 		}
@@ -353,7 +353,6 @@ int main()
 	}
 
 	int Row2 = 0;
-	char Temp[255] = {};
 	string TempStr;
 
 	getline(cin, TempStr);

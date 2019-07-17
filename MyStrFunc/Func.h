@@ -76,7 +76,7 @@ const char* MyStrstr(const char* Src, const char* Compair)
 	int srcSize = MyStrlen(Src);
 	int compairSize = MyStrlen(Compair);
 
-	if (srcSize < compairSize)
+	if (srcSize != compairSize)
 		return nullptr;
 
 	int Count = 0;
