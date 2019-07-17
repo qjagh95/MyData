@@ -35,6 +35,7 @@ struct Tile2D
 	int y;
 	int Data;
 	VISITED_MODE Visited;
+	VISITED_MODE SVisited;
 	Edge* EdgeList;
 	Tile2D* Next;
 
@@ -44,6 +45,7 @@ struct Tile2D
 		y = 0;
 		Data = 0;
 		Visited = VM_NONEVISITED;
+		SVisited = VM_NONEVISITED;
 		EdgeList = nullptr;
 		Next = nullptr;
 	}
@@ -68,7 +70,10 @@ public:
 				newTile->y = j;
 				newTile->Data = Mase[i][j];
 
-				if (m_TileList->Next == nullptr)
+				if (m_TileList == nullptr)
+					m_TileList = newTile;
+
+				else if (m_TileList->Next == nullptr)
 					m_TileList->Next = newTile;
 				else
 				{
@@ -134,17 +139,15 @@ public:
 	
 	int FindMax()
 	{
-		int Max = 0;
-
 		_DFS(m_TileList);
 
-		return Max;
+		return m_vecMax[m_vecMax.size() - 1];
 	}
 
 	Graph()
 	{
-		m_TileList = new Tile2D();
-
+		m_TileList = nullptr;
+		m_TempVar = 0;
 		m_MoveCount = 0;
 	}
 	~Graph()
@@ -157,16 +160,41 @@ public:
 	}
 
 private:
-	int _DFS(Tile2D* Tile)
+	void _DFS(Tile2D* Tile)
 	{
-		int Max = 0;
-
-		cout << "Visited : " << Tile->Data << endl;
 		Tile->Visited = VM_VISITED;
 
-		Edge* getEdge = nullptr;
+		Edge* getEdge = Tile->EdgeList;
+		Tile2D* SelectTile = Tile;
+		int Count = 0;
+
+		//정해진 숫자만큼 반복한다.
+		while (Count >= m_MoveCount)
+		{
+			Tile2D* LeftTile = nullptr;
+			Tile2D* RightTile = nullptr;
+			Tile2D* UpTile = nullptr;
+			Tile2D* DownTile = nullptr;
+
+			if (SelectTile->y - 1 >= 0)
+				UpTile = m_vecTile[SelectTile->y - 1][SelectTile->x];
+
+			if (SelectTile->y + 1 < m_vecTile.size())
+				DownTile = m_vecTile[SelectTile->y + 1][SelectTile->x];
+
+			if (SelectTile->x - 1 >= 0)
+				LeftTile = m_vecTile[SelectTile->y][SelectTile->x - 1];
+
+			if (SelectTile->x + 1 >= m_vecTile[SelectTile->y].size())
+				RightTile = m_vecTile[SelectTile->y][SelectTile->x + 1];
+
+		}
+
+		Count = 0;
+
 		getEdge = Tile->EdgeList;
 
+		//DFS로 전체탐색한다.
 		while (getEdge != nullptr)
 		{
 			Tile2D* TargetTile = getEdge->Target->Next;
@@ -176,14 +204,14 @@ private:
 
 			getEdge = getEdge->Next;
 		}
-
-		return Max;
 	}
 
 private:
 	Tile2D* m_TileList;
 	vector<vector<Tile2D*>> m_vecTile;
+	vector<size_t> m_vecMax;
 	int m_MoveCount;
+	int m_TempVar;
 };
 
 int Func(int Number, vector<vector<int>>& Mase)
@@ -191,7 +219,7 @@ int Func(int Number, vector<vector<int>>& Mase)
 	Graph* newGraph = new Graph();
 	newGraph->SettingData(Mase, Number);
 
-	int MaxCount = 0;
+	int MaxCount = newGraph->FindMax();
 
 	delete newGraph;
 	return MaxCount;
