@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <stack>
+#include <queue>
 using namespace std;
 
 vector<string> split(const string &str);
@@ -66,8 +67,8 @@ public:
 			for (size_t j = 0; j < Mase[i].size(); j++)
 			{
 				Tile2D* newTile = new Tile2D();
-				newTile->x = i;
-				newTile->y = j;
+				newTile->x = j;
+				newTile->y = i;
 				newTile->Data = Mase[i][j];
 
 				if (m_TileList == nullptr)
@@ -141,6 +142,8 @@ public:
 	{
 		_DFS(m_TileList);
 
+		sort(m_vecMax.begin(), m_vecMax.end());
+
 		return m_vecMax[m_vecMax.size() - 1];
 	}
 
@@ -164,12 +167,19 @@ private:
 	{
 		Tile->Visited = VM_VISITED;
 
+		size_t MaxValue = 0;
 		Edge* getEdge = Tile->EdgeList;
 		Tile2D* SelectTile = Tile;
-		int Count = 0;
+		MaxValue += SelectTile->Data;
+		int Count = 1;
+		int SubCount = 0;
+		stack<Tile2D*> TileStack;
+
+		if (Tile->Data == 5)
+			int a = 0;
 
 		//정해진 숫자만큼 반복한다.
-		while (Count >= m_MoveCount)
+		while (Count < m_MoveCount)
 		{
 			Tile2D* LeftTile = nullptr;
 			Tile2D* RightTile = nullptr;
@@ -177,20 +187,77 @@ private:
 			Tile2D* DownTile = nullptr;
 
 			if (SelectTile->y - 1 >= 0)
+			{
 				UpTile = m_vecTile[SelectTile->y - 1][SelectTile->x];
+				TileStack.push(UpTile);
+			}
 
 			if (SelectTile->y + 1 < m_vecTile.size())
+			{
 				DownTile = m_vecTile[SelectTile->y + 1][SelectTile->x];
+				TileStack.push(DownTile);
+			}
 
 			if (SelectTile->x - 1 >= 0)
+			{
 				LeftTile = m_vecTile[SelectTile->y][SelectTile->x - 1];
+				TileStack.push(LeftTile);
+			}
 
-			if (SelectTile->x + 1 >= m_vecTile[SelectTile->y].size())
+			if (SelectTile->x + 1 < m_vecTile[SelectTile->y].size())
+			{
 				RightTile = m_vecTile[SelectTile->y][SelectTile->x + 1];
+				TileStack.push(RightTile);
+			}
 
+			MaxValue += SelectTile->Data;
+			
+			while (true)
+			{
+				if (Count > m_MoveCount)
+					break;
+
+				if (TileStack.empty() == true)
+					break;
+
+				SelectTile = TileStack.top();
+				TileStack.pop();
+
+				if (Count <= m_MoveCount)
+				{
+					if (SelectTile->y - 1 >= 0 && m_vecTile[SelectTile->y - 1][SelectTile->x]->SVisited == VM_NONEVISITED)
+					{
+						UpTile = m_vecTile[SelectTile->y - 1][SelectTile->x];
+						UpTile->SVisited = VM_VISITED;
+						TileStack.push(UpTile);
+					}
+
+					if (SelectTile->y + 1 < m_vecTile.size() && m_vecTile[SelectTile->y + 1][SelectTile->x]->SVisited == VM_NONEVISITED)
+					{
+						DownTile = m_vecTile[SelectTile->y + 1][SelectTile->x];
+						DownTile->SVisited = VM_VISITED;
+						TileStack.push(DownTile);
+					}
+
+					if (SelectTile->x - 1 >= 0 && m_vecTile[SelectTile->y][SelectTile->x - 1]->SVisited == VM_NONEVISITED)
+					{
+						LeftTile = m_vecTile[SelectTile->y][SelectTile->x - 1];
+						LeftTile->SVisited = VM_VISITED;
+						TileStack.push(LeftTile);
+					}
+
+					if (SelectTile->x + 1 < m_vecTile[SelectTile->y].size() && m_vecTile[SelectTile->y][SelectTile->x + 1]->SVisited == VM_NONEVISITED)
+					{
+						RightTile = m_vecTile[SelectTile->y][SelectTile->x + 1];
+						RightTile->SVisited = VM_VISITED;
+						TileStack.push(RightTile);
+						MaxValue += RightTile->Data;
+					}
+				}
+				m_vecMax.push_back(MaxValue);
+				Count++;
+			}
 		}
-
-		Count = 0;
 
 		getEdge = Tile->EdgeList;
 
@@ -230,6 +297,8 @@ int main()
 	int Height = 0;
 	int Weight = 0;
 	int MoveCount = 0;
+	int* a = new int();
+
 	vector<vector<int>> Mase;
 	vector<string> vecTempStr;
 	string TempStr;
