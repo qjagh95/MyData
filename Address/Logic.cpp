@@ -75,7 +75,7 @@ void Logic::ChangeScene(const wstring& SceneName)
 {
 	Scene* getScene = FindScene(SceneName);
 
-	if (getScene != nullptr)
+	if (getScene == nullptr)
 		return;
 
 	m_CurScene = getScene;

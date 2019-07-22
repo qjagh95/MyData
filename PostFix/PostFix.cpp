@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <stack>
+#include <Windows.h>
 
 using namespace std;
 
@@ -116,11 +117,11 @@ int GetOpRank(char Operator)
 		break;
 
 	default:
-		return -1;
+		return -10;
 		break;
 	}
 
-	return -1;
+	return -10;
 }
 
 OPERATOR_RANK WhoIsFirst(char Src, char Dest)
