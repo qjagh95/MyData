@@ -78,6 +78,7 @@ string MidToLast(const string& Data)
 
 			else if (GetChar == '+' || GetChar == '-' || GetChar == '*' || GetChar == '/')
 			{
+				//연산자 우선순위 비교
 				while (OperatorStack.empty() == false && WhoIsFirst(OperatorStack.top(), GetChar) > OR_SAME)
 				{
 					Convert += OperatorStack.top();
