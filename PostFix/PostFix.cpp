@@ -66,9 +66,58 @@ string MidToLast(const string& Data)
 				Index++;
 			}
 		}
+		else if (i == 0 && GetChar == '-')
+		{
+			int Temp = 0;
+			bool isCheck = false;
+
+			while (true)
+			{
+				Convert += Data[Temp];
+				Temp++;
+
+				isCheck = true;
+
+				if (GetIsNumber(Data[Temp]) == false && isCheck == true)
+				{
+					Convert += " ";
+					break;
+				}
+			}
+
+			i = Temp - 1;
+		}
 		else
 		{
-			if (GetChar == ')')
+			if (OperatorStack.size() == 1 && OperatorStack.top() == '-')
+			{
+				string Temp;
+				vector<float> vecData;
+
+				OperatorStack.pop();
+				OperatorStack.push(GetChar);
+
+				for (size_t i = 0; i < Convert.size(); i++)
+				{
+					Temp += Convert[i];
+
+					if (Convert[i] == ' ')
+					{
+						float Temp2 = stof(Temp);
+						vecData.push_back(Temp2);
+						Temp.clear();
+						continue;
+					}
+				}
+
+				char Buffer[255] = {};
+				float Value = vecData[0] - vecData[1];
+				_itoa_s(Value, Buffer, 255, 10);
+				Convert = Buffer;
+				Convert+= " ";
+			}
+
+			else if (GetChar == ')')
 			{
 				char Top = OperatorStack.top();
 				OperatorStack.pop();
@@ -152,15 +201,36 @@ float Result(const string & Data)
 {
 	stack<float> NumberStack;
 	float Value = 0.0f;
+	bool isCheck = false;
 
 	for (size_t i = 0; i < Data.size(); i++)
 	{
 		char GetChar = Data[i];
 
 		size_t Index = i;
-		if (GetIsNumber(GetChar) == true)
+		if (GetIsNumber(GetChar) == true || (i == 0 && GetChar == '-' && isCheck == false))
 		{
 			string NumberString;
+
+			if (i == 0 && GetChar == '-')
+			{
+				int Temp = 0;
+				string TempStr;
+				while (Data[Temp] != ' ')
+				{
+					TempStr += Data[Temp];
+					Temp++;
+				}
+				Index = Temp;
+
+				int Value = stoi(TempStr);
+
+				char Buffer[255] = { };
+				_itoa_s(Value, Buffer, 255, 10);
+				NumberString = Buffer;
+				isCheck = true;
+			}
+
 			while (true)
 			{
 				if (GetIsNumber(Data[Index]) == false)
