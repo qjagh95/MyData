@@ -167,19 +167,14 @@ private:
 	{
 		Tile->Visited = VM_VISITED;
 
-		size_t MaxValue = 0;
-		Edge* getEdge = Tile->EdgeList;
 		Tile2D* SelectTile = Tile;
-		MaxValue += SelectTile->Data;
-		int Count = 1;
-		int SubCount = 0;
+		size_t MaxValue = Tile->Data * 2;
+		Edge* getEdge = Tile->EdgeList;
+		int Count = 0;
 		stack<Tile2D*> TileStack;
 
-		if (Tile->Data == 5)
-			int a = 0;
-
 		//정해진 숫자만큼 반복한다.
-		while (Count < m_MoveCount)
+		while (Count <= m_MoveCount)
 		{
 			Tile2D* LeftTile = nullptr;
 			Tile2D* RightTile = nullptr;
@@ -210,53 +205,45 @@ private:
 				TileStack.push(RightTile);
 			}
 
-			MaxValue += SelectTile->Data;
-			
-			while (true)
+			Count++;
+
+			while (TileStack.empty() == false)
 			{
-				if (Count > m_MoveCount)
-					break;
-
-				if (TileStack.empty() == true)
-					break;
-
 				SelectTile = TileStack.top();
 				TileStack.pop();
-
-				if (Count <= m_MoveCount)
-				{
-					if (SelectTile->y - 1 >= 0 && m_vecTile[SelectTile->y - 1][SelectTile->x]->SVisited == VM_NONEVISITED)
-					{
-						UpTile = m_vecTile[SelectTile->y - 1][SelectTile->x];
-						UpTile->SVisited = VM_VISITED;
-						TileStack.push(UpTile);
-					}
-
-					if (SelectTile->y + 1 < m_vecTile.size() && m_vecTile[SelectTile->y + 1][SelectTile->x]->SVisited == VM_NONEVISITED)
-					{
-						DownTile = m_vecTile[SelectTile->y + 1][SelectTile->x];
-						DownTile->SVisited = VM_VISITED;
-						TileStack.push(DownTile);
-					}
-
-					if (SelectTile->x - 1 >= 0 && m_vecTile[SelectTile->y][SelectTile->x - 1]->SVisited == VM_NONEVISITED)
-					{
-						LeftTile = m_vecTile[SelectTile->y][SelectTile->x - 1];
-						LeftTile->SVisited = VM_VISITED;
-						TileStack.push(LeftTile);
-					}
-
-					if (SelectTile->x + 1 < m_vecTile[SelectTile->y].size() && m_vecTile[SelectTile->y][SelectTile->x + 1]->SVisited == VM_NONEVISITED)
-					{
-						RightTile = m_vecTile[SelectTile->y][SelectTile->x + 1];
-						RightTile->SVisited = VM_VISITED;
-						TileStack.push(RightTile);
-						MaxValue += RightTile->Data;
-					}
-				}
-				m_vecMax.push_back(MaxValue);
 				Count++;
+
+				if (SelectTile->y - 1 >= 0 && m_vecTile[SelectTile->y - 1][SelectTile->x]->SVisited == VM_NONEVISITED && m_vecTile[SelectTile->y - 1][SelectTile->x]->Visited == VM_NONEVISITED)
+				{
+					UpTile = m_vecTile[SelectTile->y - 1][SelectTile->x];
+					UpTile->SVisited = VM_VISITED;
+					TileStack.push(UpTile);
+				}
+
+				if (SelectTile->y + 1 < m_vecTile.size() && m_vecTile[SelectTile->y + 1][SelectTile->x]->SVisited == VM_NONEVISITED && m_vecTile[SelectTile->y + 1][SelectTile->x]->Visited == VM_NONEVISITED)
+				{
+					DownTile = m_vecTile[SelectTile->y + 1][SelectTile->x];
+					DownTile->SVisited = VM_VISITED;
+					TileStack.push(DownTile);
+				}
+
+				if (SelectTile->x - 1 >= 0 && m_vecTile[SelectTile->y][SelectTile->x - 1]->SVisited == VM_NONEVISITED && m_vecTile[SelectTile->y][SelectTile->x - 1]->Visited == VM_NONEVISITED)
+				{
+					LeftTile = m_vecTile[SelectTile->y][SelectTile->x - 1];
+					LeftTile->SVisited = VM_VISITED;
+					TileStack.push(LeftTile);
+				}
+
+				if (SelectTile->x + 1 < m_vecTile[SelectTile->y].size() && m_vecTile[SelectTile->y][SelectTile->x + 1]->SVisited == VM_NONEVISITED && m_vecTile[SelectTile->y][SelectTile->x + 1]->Visited == VM_NONEVISITED)
+				{
+					RightTile = m_vecTile[SelectTile->y][SelectTile->x + 1];
+					RightTile->SVisited = VM_VISITED;
+					TileStack.push(RightTile);
+				}
 			}
+
+			MaxValue += SelectTile->Data;
+			m_vecMax.push_back(MaxValue);			
 		}
 
 		getEdge = Tile->EdgeList;
