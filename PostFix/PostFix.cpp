@@ -45,6 +45,7 @@ string MidToLast(const string& Data)
 {
 	string Convert;
 	stack<char> OperatorStack;
+	bool isCheck2 = false;
 
 	for (size_t i = 0; i < Data.size(); i++)
 	{
@@ -89,7 +90,10 @@ string MidToLast(const string& Data)
 		}
 		else
 		{
-			if (OperatorStack.size() == 1 && OperatorStack.top() == '-')
+			if (GetChar == '(')
+				isCheck2 = true;
+
+			if (OperatorStack.size() == 1 && OperatorStack.top() == '-' && isCheck2 == false)
 			{
 				string Temp;
 				vector<float> vecData;
@@ -109,6 +113,9 @@ string MidToLast(const string& Data)
 						continue;
 					}
 				}
+
+				if (vecData.size() == 1)
+					break;
 
 				char Buffer[255] = {};
 				float Value = vecData[0] - vecData[1];
