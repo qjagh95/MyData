@@ -99,6 +99,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Socket(Network)연습", "So
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BasicSocket", "BasicSocket\BasicSocket.vcxproj", "{B42A07BB-8774-47C2-A7BC-5BB6FA823F2B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SocketTest", "SocketTest\SocketTest.vcxproj", "{EE9236EB-D7A6-40C8-8419-6A6DDF4D6713}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -443,6 +445,14 @@ Global
 		{B42A07BB-8774-47C2-A7BC-5BB6FA823F2B}.Release|x64.Build.0 = Release|x64
 		{B42A07BB-8774-47C2-A7BC-5BB6FA823F2B}.Release|x86.ActiveCfg = Release|Win32
 		{B42A07BB-8774-47C2-A7BC-5BB6FA823F2B}.Release|x86.Build.0 = Release|Win32
+		{EE9236EB-D7A6-40C8-8419-6A6DDF4D6713}.Debug|x64.ActiveCfg = Debug|x64
+		{EE9236EB-D7A6-40C8-8419-6A6DDF4D6713}.Debug|x64.Build.0 = Debug|x64
+		{EE9236EB-D7A6-40C8-8419-6A6DDF4D6713}.Debug|x86.ActiveCfg = Debug|Win32
+		{EE9236EB-D7A6-40C8-8419-6A6DDF4D6713}.Debug|x86.Build.0 = Debug|Win32
+		{EE9236EB-D7A6-40C8-8419-6A6DDF4D6713}.Release|x64.ActiveCfg = Release|x64
+		{EE9236EB-D7A6-40C8-8419-6A6DDF4D6713}.Release|x64.Build.0 = Release|x64
+		{EE9236EB-D7A6-40C8-8419-6A6DDF4D6713}.Release|x86.ActiveCfg = Release|Win32
+		{EE9236EB-D7A6-40C8-8419-6A6DDF4D6713}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -490,6 +500,7 @@ Global
 		{407DCE53-E3EE-4CA0-ACFE-EFC669908FE3} = {E03313C7-ECB3-4310-B4F3-C0872E2637A7}
 		{9EA84C71-2314-4AC4-B8F5-A95D3D08281F} = {E03313C7-ECB3-4310-B4F3-C0872E2637A7}
 		{B42A07BB-8774-47C2-A7BC-5BB6FA823F2B} = {DDD7015F-3204-4C80-969F-02C80FD0B88D}
+		{EE9236EB-D7A6-40C8-8419-6A6DDF4D6713} = {DDD7015F-3204-4C80-969F-02C80FD0B88D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93B53A0A-FA9F-47A0-ADDB-A71245C8EECB}
