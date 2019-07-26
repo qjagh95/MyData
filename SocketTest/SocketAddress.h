@@ -14,7 +14,7 @@ public:
 		memcpy(&m_SocketAddress, &CopyData, sizeof(SocketAddress));
 	}
 
-	~SocketAddress();
+	~SocketAddress() {}
 
 	sockaddr_in* GetSocketAddress() { return reinterpret_cast<sockaddr_in*>(&m_SocketAddress); }
 

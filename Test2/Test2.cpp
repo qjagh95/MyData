@@ -28,6 +28,7 @@ public:
 	void Print() override { cout << "CC" << endl; }
 	CC() { Print(); }
 };
+#define X (x*x) 
 
 int main()
 {
@@ -41,3 +42,4 @@ int main()
 
 	delete newAA;
 }
+

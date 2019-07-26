@@ -75,12 +75,9 @@ int main()
 	//GetAddrInfo다음에는 FreeaddrInfo를해야함
 	FreeAddrInfo();
 
-
 	//바인딩하기 (데이터를 송수신하기위해선 반드시 소켓이 바인딩되어있어야한다)
 	//어떤 소켓이 특정 주소와 전송계층 포트를 쓰겠다고 알려주는 절차
 	bind();
-
-
 
 	//WSAStartUp함수를 호출한만큼 해줘야한다. (래퍼런스 카운트방식)
 	WSACleanup();

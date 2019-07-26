@@ -5,8 +5,29 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Class">
+    <Filter Include="SocketAddress">
       <UniqueIdentifier>{85211b65-a2d3-47a3-aa64-c1555ea2bb20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TCPSocket">
+      <UniqueIdentifier>{d1ca27f9-ebcb-4864-afb1-d8e0721a15b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UDPSocket">
+      <UniqueIdentifier>{d9054b00-4c43-4434-ac3b-f8e59ae1b195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SocketFactory">
+      <UniqueIdentifier>{8216b00b-777f-4de3-95d2-0db8b210f79e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ReadMemStream">
+      <UniqueIdentifier>{80ba7a28-ce9b-47a1-9771-e4b5bf8bfd82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WriteMemStream">
+      <UniqueIdentifier>{6ec665d4-f826-4ae2-b761-05ba4a7c8d6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MemoryStream">
+      <UniqueIdentifier>{97931c89-587d-4328-b9e7-e8786081dea5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ByteSwapper">
+      <UniqueIdentifier>{465c5512-de0d-4ea7-b1a2-fbdb4938cab3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -17,7 +38,28 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SocketAddress.cpp">
-      <Filter>Class</Filter>
+      <Filter>SocketAddress</Filter>
+    </ClCompile>
+    <ClCompile Include="TCPSocket.cpp">
+      <Filter>TCPSocket</Filter>
+    </ClCompile>
+    <ClCompile Include="UDPSocket.cpp">
+      <Filter>UDPSocket</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketFactory.cpp">
+      <Filter>SocketFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadMemStream.cpp">
+      <Filter>ReadMemStream</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteMemStream.cpp">
+      <Filter>WriteMemStream</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryStream.cpp">
+      <Filter>MemoryStream</Filter>
+    </ClCompile>
+    <ClCompile Include="ByteSwapper.cpp">
+      <Filter>ByteSwapper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -25,7 +67,28 @@
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="SocketAddress.h">
-      <Filter>Class</Filter>
+      <Filter>SocketAddress</Filter>
+    </ClInclude>
+    <ClInclude Include="TCPSocket.h">
+      <Filter>TCPSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="UDPSocket.h">
+      <Filter>UDPSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketFactory.h">
+      <Filter>SocketFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadMemStream.h">
+      <Filter>ReadMemStream</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteMemStream.h">
+      <Filter>WriteMemStream</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryStream.h">
+      <Filter>MemoryStream</Filter>
+    </ClInclude>
+    <ClInclude Include="ByteSwapper.h">
+      <Filter>ByteSwapper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
