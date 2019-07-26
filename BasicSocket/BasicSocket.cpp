@@ -52,6 +52,36 @@ int main()
 	ntohl();
 
 
+	//문자열로 sockaddr의 초기화가 가능하다.
+	//소켓 주소구조체에 하나씩 채워넣는건 번거롭다. 그래서쓴다.
+	//그때 사용하는 함수.
+	//1. AF_INET or AF_INET6, IP주소 문자열, 반환받을 주소
+	InetPton();
+
+	//EX)
+	sockaddr_in newAddr = {};
+	newAddr.sin_family = AF_INET;
+	newAddr.sin_port = htons(80);
+	InetPton(AF_INET, L"65.254.248.180", &newAddr.sin_addr);
+
+
+	//InetPton함수는 사람이 읽을 수 있는 IP주소 문자열을 이진IP주소로 변환만 처리한다.
+	//즉 도메인이름이나 DNS조회는 수행하지 않는다. (DNS -> 도메인을 IP주소로 변환하는 프로토콜)
+	//도메인주소를 IP로 변환하고 싶다면 getAddrinfo()를 사용해야한다.
+	GetAddrInfo(); //ai_flag, ai_socktype, ai_protocol은 사용하지않는다.
+	//1. 도메인 문자열
+	//2. 포트번호 or 서비스이름(http)
+
+	//GetAddrInfo다음에는 FreeaddrInfo를해야함
+	FreeAddrInfo();
+
+
+	//바인딩하기 (데이터를 송수신하기위해선 반드시 소켓이 바인딩되어있어야한다)
+	//어떤 소켓이 특정 주소와 전송계층 포트를 쓰겠다고 알려주는 절차
+	bind();
+
+
+
 	//WSAStartUp함수를 호출한만큼 해줘야한다. (래퍼런스 카운트방식)
 	WSACleanup();
 
