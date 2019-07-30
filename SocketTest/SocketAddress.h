@@ -1,4 +1,5 @@
 #pragma once
+class string;
 class SocketAddress
 {
 public:
@@ -8,8 +9,12 @@ public:
 		GetSocketAddress()->sin_addr.S_un.S_addr = htonl(Address);
 		GetSocketAddress()->sin_port = htons(Port);
 	}
+	SocketAddress(const string& Address, uint16_t Port)
+	{
 
-	SocketAddress(const SocketAddress& CopyData)
+	}
+
+	SocketAddress(const sockaddr& CopyData)
 	{
 		memcpy(&m_SocketAddress, &CopyData, sizeof(SocketAddress));
 	}
