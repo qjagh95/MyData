@@ -28,7 +28,6 @@ public:
 	void Print() override { cout << "CC" << endl; }
 	CC() { Print(); }
 };
-#define X (x*x) 
 
 int main()
 {
@@ -38,8 +37,14 @@ int main()
 
 	AA* newAA = new CC();
 	//함수 뒤 this가 붙기때문에 AA BB CC CC실행
+
 	newAA->Print();
+
+	AA* getAA = dynamic_cast<CC*>(newAA);
+
+	CC* newCC = new CC();
+
+	AA* getCC = dynamic_cast<AA*>(newCC);
 
 	delete newAA;
 }
-

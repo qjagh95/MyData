@@ -221,5 +221,5 @@ void ConvertJinSu(int Number)
 
 int main()
 {
-	ConvertJinSu(-1500);
+	ConvertJinSu(0);
 }

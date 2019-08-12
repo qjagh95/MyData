@@ -20,7 +20,7 @@ int main()
 	char Buffer[255];
 	strcpy_s(Buffer, "abcdefg");
 
-	size_t last = 01;
+	size_t last = 0;
 	size_t first = 0;
 
 	for (first = 0, last = strlen(Buffer) - 1; first < last; last--, first++)
@@ -31,5 +31,4 @@ int main()
 	}
 
 	cout << Buffer;
-
 }
