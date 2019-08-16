@@ -3,7 +3,6 @@
 
 #include <Ws2tcpip.h>
 
-
 EndPoint::EndPoint()
 {
 	ZeroMemory(&m_IPv4Endpoint, sizeof(m_IPv4Endpoint));

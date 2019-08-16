@@ -155,6 +155,8 @@
     <ClInclude Include="Exception.h" />
     <ClInclude Include="Iocp.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PollFD.h" />
+    <ClInclude Include="SemaPhore.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SockInit.h" />
   </ItemGroup>
@@ -168,6 +170,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PollFD.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="SockInit.cpp" />
   </ItemGroup>

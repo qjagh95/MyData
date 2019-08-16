@@ -22,6 +22,9 @@
     <ClCompile Include="Exception.cpp">
       <Filter>Public</Filter>
     </ClCompile>
+    <ClCompile Include="PollFD.cpp">
+      <Filter>Public</Filter>
+    </ClCompile>
     <ClCompile Include="Socket.cpp">
       <Filter>Public</Filter>
     </ClCompile>
@@ -40,6 +43,12 @@
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="Iocp.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="PollFD.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="SemaPhore.h">
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="Socket.h">
