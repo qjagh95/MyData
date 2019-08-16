@@ -9,6 +9,7 @@
 #ifndef PCH_H
 #define PCH_H
 
+
 #include <iostream>
 #include <vector>
 #include <list>
@@ -20,15 +21,20 @@
 #include <sstream>
 #include <exception>
 #include <thread>
+#include <queue>
 #include <mutex>
-//#include "EndPoint.h"
-//#include "Socket.h"
-//#include "SockInit.h"
-//#include "Exception.h"
+#include "EndPoint.h"
+#include "Socket.h"
+#include "SockInit.h"
+#include "Exception.h"
+#include "SemaPhore.h"
+#include "PollFD.h"
+#include "MyIOCP.h"
+#include <signal.h>
+#include <memory>
 
 #pragma comment(lib, "Ws2_32.lib")
 #pragma comment(lib, "mswsock.lib")
-using namespace std;
 
 // TODO: 여기에 미리 컴파일하려는 헤더 추가
 

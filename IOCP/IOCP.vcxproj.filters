@@ -13,9 +13,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="IOCP.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="EndPoint.cpp">
       <Filter>Public</Filter>
     </ClCompile>
@@ -31,6 +28,12 @@
     <ClCompile Include="SockInit.cpp">
       <Filter>Public</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MyIOCP.cpp">
+      <Filter>Public</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -40,9 +43,6 @@
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="Exception.h">
-      <Filter>Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Iocp.h">
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="PollFD.h">
@@ -55,6 +55,9 @@
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="SockInit.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="MyIOCP.h">
       <Filter>Public</Filter>
     </ClInclude>
   </ItemGroup>

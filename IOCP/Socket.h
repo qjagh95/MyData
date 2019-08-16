@@ -21,15 +21,11 @@ public:
 	void Listen();
 	int Accept(Socket& acceptedSocket, std::string& errorText);
 
-#ifdef _WIN32
 	bool AcceptOverlapped(Socket& acceptCandidateSocket, std::string& errorText);
 	int UpdateAcceptContext(Socket& listenSocket);
-#endif
 	EndPoint GetPeerAddr();
 	int Receive();
-#ifdef _WIN32
 	int ReceiveOverlapped();
-#endif
 	void SetNonblocking();
 	std::string GetLastErrorAsString();
 		
