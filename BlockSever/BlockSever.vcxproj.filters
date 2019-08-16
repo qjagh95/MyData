@@ -5,6 +5,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Public">
+      <UniqueIdentifier>{36931bfe-2d26-4014-82a8-13f59bc0fed4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -13,10 +16,40 @@
     <ClCompile Include="BlockSever.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Socket.cpp">
+      <Filter>Public</Filter>
+    </ClCompile>
+    <ClCompile Include="EndPoint.cpp">
+      <Filter>Public</Filter>
+    </ClCompile>
+    <ClCompile Include="SockInit.cpp">
+      <Filter>Public</Filter>
+    </ClCompile>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Public</Filter>
+    </ClCompile>
+    <ClCompile Include="Iocp.cpp">
+      <Filter>Public</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Socket.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="EndPoint.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="SockInit.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Exception.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Iocp.h">
+      <Filter>Public</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
