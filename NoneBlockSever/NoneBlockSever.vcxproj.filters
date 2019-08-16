@@ -45,6 +45,9 @@
     <ClInclude Include="Iocp.h">
       <Filter>Public</Filter>
     </ClInclude>
+    <ClInclude Include="SemaPhore.h">
+      <Filter>Public</Filter>
+    </ClInclude>
     <ClInclude Include="Socket.h">
       <Filter>Public</Filter>
     </ClInclude>

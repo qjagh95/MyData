@@ -155,6 +155,7 @@
     <ClInclude Include="Exception.h" />
     <ClInclude Include="Iocp.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="SemaPhore.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SockInit.h" />
   </ItemGroup>
