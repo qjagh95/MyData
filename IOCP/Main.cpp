@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "WriteMemoryStream.h"
+
 using namespace std;
 // true가 되면 프로그램을 종료합니다.
 volatile bool stopWorking = false;
@@ -35,6 +37,7 @@ void main()
 {
 	// 사용자가 ctl-c를 누르면 메인루프를 종료하게 만듭니다.
 	signal(SIGINT, ProcessSignalAction);
+
 
 	MyIOCP iocp(8); // 본 예제는 스레드를 딱 하나만 쓴다. 따라서 여기도 1이 들어간다.
 	// TCP 연결을 받는 소켓

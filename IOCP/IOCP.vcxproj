@@ -159,6 +159,7 @@
     <ClInclude Include="SemaPhore.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SockInit.h" />
+    <ClInclude Include="WriteMemoryStream.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndPoint.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="PollFD.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="SockInit.cpp" />
+    <ClCompile Include="WriteMemoryStream.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
