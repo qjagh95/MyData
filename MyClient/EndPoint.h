@@ -4,13 +4,11 @@ class EndPoint
 public:
 	sockaddr_in m_IPv4Endpoint;
 	static EndPoint Any;
-	string ToString();
+	std::string ToString();
 
 public:
 	EndPoint();
 	EndPoint(const char* address, int port);
 	~EndPoint();
-
-
 };
-	
+

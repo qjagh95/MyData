@@ -1,12 +1,9 @@
 #include "pch.h"
 #include "EndPoint.h"
 
-#ifdef _WIN32
 #include <Ws2tcpip.h>
-#else 
-#include <netinet/in.h>
-#include <netinet/ip.h>
-#endif
+
+EndPoint EndPoint::Any = {};
 
 EndPoint::EndPoint()
 {
@@ -26,14 +23,14 @@ EndPoint::~EndPoint()
 {
 }
 
-string EndPoint::ToString()
+std::string EndPoint::ToString()
 {
 	char addrString[1000];
 	addrString[0] = 0;
 	inet_ntop(AF_INET, &m_IPv4Endpoint.sin_addr, addrString, sizeof(addrString) - 1);
 
 	char finalString[1000];
-	sprintf(finalString, "%s:%d", addrString, htons(m_IPv4Endpoint.sin_port));
+	sprintf_s(finalString, "%s:%d", addrString, htons(m_IPv4Endpoint.sin_port));
 
 	return finalString;
 }

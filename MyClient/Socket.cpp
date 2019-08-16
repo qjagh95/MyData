@@ -169,14 +169,6 @@ int Socket::ReceiveOverlapped()
 	m_readFlags = 0;
 
 	return WSARecv(m_Socket, &b, 1, NULL, &m_readFlags, &m_ReadOverlappedStruct, NULL);
-	WSABUF b;
-	b.buf = m_receiveBuffer;
-	b.len = MaxReceiveLength;
-
-	// overlapped I/O가 진행되는 동안 여기 값이 채워집니다.
-	m_readFlags = 0;
-
-	return WSARecv(m_Socket, &b, 1, NULL, &m_readFlags, &m_ReadOverlappedStruct, NULL);
 }
 
 // 넌블럭 소켓으로 모드를 설정합니다.

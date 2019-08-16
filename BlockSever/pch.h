@@ -20,11 +20,14 @@
 #include <sstream>
 #include <exception>
 #include <thread>
+#include <queue>
 #include <mutex>
 #include "EndPoint.h"
 #include "Socket.h"
 #include "SockInit.h"
 #include "Exception.h"
+#include "SemaPhore.h"
+#include <signal.h>
 
 #pragma comment(lib, "Ws2_32.lib")
 #pragma comment(lib, "mswsock.lib")
