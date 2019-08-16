@@ -14,7 +14,7 @@ MyIOCP::~MyIOCP()
 
 void MyIOCP::Wait(IocpEvents & output, int timeoutMs)
 {
-	BOOL r = GetQueuedCompletionStatusEx(m_hIocp, output.m_events, MaxEventCount, (ULONG*)&output.m_eventCount, timeoutMs, FALSE);
+	BOOL r = GetQueuedCompletionStatusEx(m_hIocp, output.m_events, MaxEventCount, reinterpret_cast<ULONG*>(&output.m_eventCount), timeoutMs, FALSE);
 
 	if (!r)
 		output.m_eventCount = 0;
