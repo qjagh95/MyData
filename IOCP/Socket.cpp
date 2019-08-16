@@ -171,6 +171,16 @@ int Socket::ReceiveOverlapped()
 	return WSARecv(m_Socket, &b, 1, NULL, &m_readFlags, &m_ReadOverlappedStruct, NULL);
 }
 
+int Socket::SendOverlapped(const char* Data, int Length, Socket& sock)
+{
+	WSABUF buf;
+	buf.buf = const_cast<char*>(Data);
+	buf.len = Length;
+	m_readFlags = 0;
+
+	return WSASend(sock.m_Socket, &buf, 1, nullptr, m_readFlags, &m_SendOverlappedStruct, nullptr);
+}
+
 // 넌블럭 소켓으로 모드를 설정합니다.
 void Socket::SetNonblocking()
 {

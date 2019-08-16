@@ -110,7 +110,6 @@ void main()
 						listenSocket.m_isReadOverlapped = true;
 				}
 			}
-
 			else  // TCP 연결 소켓이면
 			{
 				// 받은 데이터를 그대로 회신한다.
@@ -136,11 +135,13 @@ void main()
 						char* echoData = remoteClient->tcpConnection.m_receiveBuffer;
 						int echoDataLength = ec;
 
+						cout << echoData << endl;
+
 						// 원칙대로라면 TCP 스트림 특성상 일부만 송신하고 리턴하는 경우도 고려해야 하나,
 						// 지금은 독자의 이해가 우선이므로, 생략하도록 한다.
 						// 원칙대로라면 여기서 overlapped 송신을 해야 하지만 
 						// 독자의 이해를 위해서 그냥 블로킹 송신을 한다.
-						remoteClient->tcpConnection.Send(echoData, echoDataLength);
+						remoteClient->tcpConnection.SendOverlapped(echoData, echoDataLength, remoteClient->tcpConnection);
 
 						// 다시 수신을 받으려면 overlapped I/O를 걸어야 한다.
 						if (remoteClient->tcpConnection.ReceiveOverlapped() != 0 && WSAGetLastError() != ERROR_IO_PENDING)
@@ -169,10 +170,8 @@ void main()
 		// I/O completion이 없는 상태의 RemoteClient를 제거한다.
 		for (auto i = remoteClients.begin(); i != remoteClients.end();)
 		{
-			if (!i->second->tcpConnection.m_isReadOverlapped)
-			{
+			if (i->second->tcpConnection.m_isReadOverlapped == false)
 				i = remoteClients.erase(i);
-			}
 			else
 				i++; // 좀 더 기다려보자.
 		}
@@ -185,6 +184,7 @@ void main()
 		for (int i = 0; i < readEvents.m_eventCount; i++)
 		{
 			auto& readEvent = readEvents.m_events[i];
+
 			if (readEvent.lpCompletionKey == 0) // 리슨소켓이면
 				listenSocket.m_isReadOverlapped = false;
 			else
