@@ -31,6 +31,9 @@
     <ClCompile Include="SockInit.cpp">
       <Filter>Public</Filter>
     </ClCompile>
+    <ClCompile Include="PollFD.cpp">
+      <Filter>Public</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -52,6 +55,9 @@
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="SockInit.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="PollFD.h">
       <Filter>Public</Filter>
     </ClInclude>
   </ItemGroup>
