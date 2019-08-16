@@ -1,6 +1,10 @@
-﻿#include "pch.h"
-using namespace std;
+#include "pch.h"
+#include "Iocp.h"
 
-int main()
+Iocp::Iocp()
+{
+}
+
+Iocp::~Iocp()
 {
 }
