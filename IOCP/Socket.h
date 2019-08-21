@@ -39,7 +39,7 @@ public:
 public:
 	static const int MaxReceiveLength = 8192;
 	SOCKET m_Socket; // 소켓 핸들
-	// AcceptEx 함수 포인터 AccpetEx함수를 대체한다.
+	// AcceptEx 함수 포인터
 	LPFN_ACCEPTEX m_AcceptEx = NULL;
 
 	// Overlapped I/O나 IOCP를 쓸 때에만 사용됩니다. 현재 overlapped I/O 중이면 true입니다.
