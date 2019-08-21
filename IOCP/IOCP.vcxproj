@@ -156,6 +156,7 @@
     <ClInclude Include="MyIOCP.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PollFD.h" />
+    <ClInclude Include="ReadMemoryStream.h" />
     <ClInclude Include="SemaPhore.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SockInit.h" />
@@ -173,6 +174,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="PollFD.cpp" />
+    <ClCompile Include="ReadMemoryStream.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="SockInit.cpp" />
     <ClCompile Include="WriteMemoryStream.cpp" />

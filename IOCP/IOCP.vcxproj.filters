@@ -37,6 +37,9 @@
     <ClCompile Include="WriteMemoryStream.cpp">
       <Filter>Public</Filter>
     </ClCompile>
+    <ClCompile Include="ReadMemoryStream.cpp">
+      <Filter>Public</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -64,6 +67,9 @@
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="WriteMemoryStream.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadMemoryStream.h">
       <Filter>Public</Filter>
     </ClInclude>
   </ItemGroup>
